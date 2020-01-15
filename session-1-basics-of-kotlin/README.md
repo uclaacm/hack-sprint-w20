@@ -1,23 +1,32 @@
 # Hack Sprint Session 1: Basics of Kotlin
 **Date**: January 16th, 2020
 **Location**: Covel 227
-**Teacher**: Jody Lin
+**Teacher**: Jody Lin and Sahen Rai
 
 ## Resources
 **Slides**
-*[Session 1- Basics of Kotlin](TODO)
+* [Session 1- Basics of Kotlin](https://docs.google.com/presentation/d/1ZyaiM5MffFLa_yJ5gB7-VaizTskio8d597T7ICkdaZ4/edit?usp=sharingTODO)
 
 **ACM Membership Attendance Portal**
 * [Portal](http://members.uclaacm.com/login)
 
 **Questions**
-* [Ask your question here!](TODO)
+Please join our Facebook page for announcements and more! We will do our best to answer questions on our page every week. 
+* [Facebook Page](https://www.facebook.com/groups/1399200097134287)
 
 **Other useful resources**
-TODO
+* [Kotlin Documentation](https://kotlinlang.org/docs/reference/)
+* [Interactive Kotlin Tutorial](https://blog.jetbrains.com/blog/2019/12/05/jetbrains-academy-kotlin/)
 
 ## Prerequisites
-???Maybe 
+Before we begin, it will be helpful to have a basic understanding of a few topics, as we will merely be explaining their syntax and usage in Kotlin. Here are some concepts you should have knowledge of (doesn't matter from which language)
+* Basic Data Types
+* Conditionals (If /Else If / Else)
+* Loops
+* Functions
+* Classes
+    * Do not need to know Class Composition, Inheritance, or Polymorphism
+
 
 ## What we'll be learning today
 - Data Types
