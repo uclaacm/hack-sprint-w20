@@ -115,6 +115,103 @@ val twiceStr: String = "9" // note this of type string
 val twiceNum: Int = twiceStr.toInt() // now holds integer value 9
 ```
 
+## Nullable Types
+Most of the time we want our variables to hold data, but there also also times when we don't yet know the value and wish to leave the variable empty. 
+
+Kotlin provides us with a way to do this. We refer to these data types as nullable types. 
+> Historically NullPointerExceptions have caused countless issues that crash programs and make a lot of people want to smash their computers with sledgehammers. Basically nullable types protect against this. 
+
+Let's look at an example. 
+```kt
+var favoriteShow: String? = null
+
+println("Jody's favorite show is " + favoriteShow)
+
+favoriteShow = "Parks and Recreation"
+
+println("Jody's favorite show is " + favoriteShow)
+```
+```
+OUTPUT: 
+Jody's favorite show is null
+Jody's favorite show is Parks and Recreation
+```
+
+As we can see, we have assigned `favoriteShow` with the type `String?`. By adding the `?` we have now given our variable the ability to hold either a `String` or `null` value. 
+
+When we try to access the String when it's null, the variable will return `null`. When finally assign it a value, the String value is able to be accessed and used. 
+
+Here's the general syntax for nullable types:
+```kt
+var variableName: DataType? = (null or value of type DataType)
+```
+> Note: more often than not, we want to reassign our nullable type with a non-null value later, so we should use `var`, which allows us to change the value of the variable, instead of `val`, which does not let us change the data once we initialize it. 
+
+In addition to being able to store `null`, in our variable, Kotlin provides us a way to not accidentally access data from a `null`.
+
+Take this C++ code for example:
+```cpp
+char* m_friend = NULL;
+cout << *m_friend;  // DIES and throws NullPointerException
+```
+Here we try access the length of a string that doesn't exist. The program freaks out and throws an exception and stops running the program. 
+
+In Kotlin, we now must call functions and access member variables differently. 
+
+```kt
+var friend: String? = null
+println(friend?.length)
+
+friend = "Galen"
+println(friend?.length)
+```
+```
+OUTPUT: 
+null
+5
+```
+
+
+Notice that we add a `?` _before_ the dot operator. We call this a **safe call**. Basically we can safely ensure that our program will not throw a NullPointerException. 
+
+If the variable is `null`, the variable will simply be returned as `null`. If the value is _not_ `null`, we can call the appropriate function or access the data member. 
+
+_Rule_: If you have a nullable type, every time you wish to use the `.` (dot operator), you MUST use a **safe call** `?.`
+
+### The Elvis Operator ( ?: )
+Often times when we'll check with an if statement to perform special behavior when a value is null. Take the example below:
+```kt
+var friend: String? = null
+val length: Int? = friend?.length // will be null because 'friend' is null
+
+println(
+    if (length != null)
+        return length
+    else
+        return 0
+) // OUTPUT: 0
+```
+
+If `length` is `null`, we don't really want to return `null`, but `0` instead. When `length` is not `null`, we just return its value. 
+
+Kotlin gives a very shorthand to do this with the **Elvis Operator**. 
+
+The above code can be equivalently written as:
+```kt
+var friend: String? = null
+val length: Int? = friend?.length // null
+
+println( length ?: 0 ) // OUTPUT: 0
+```
+
+What this does: Kotlin checks if the value on to the left of the `?:` is null. If it is not `null`, then return the value. Otherwise return the value to the right of `?:`. 
+
+
+Why is this called the Elvis Operator?
+![That's why](images/elvis.png)
+
+That's why. 
+
 ## Control Flow
 
 ### if, else if, and else
@@ -334,6 +431,119 @@ fun speakChinese(): Unit {
 }
 ```
 
+### Functions References
+In Kotlin, functions are incredibly versatile. Here is a list of some of the things we can do with functions:
+* store as a variable
+* returned by a function
+* pass a function argument
+
+You might notice that these are things we can do with data types like `Int`, `String`, `Double`, etc. Well, in Kotlin, functions can _also_ do these!
+
+#### Storing functions as variables
+We've stored types like `Int`'s and `String`'s as variables, so how do we do this functions?
+
+Recall the general syntax of declaring variables:
+```kt
+var/val nameOfVariable: DataType = value
+```
+
+How do we write the Type of a function (also called Function Type)?
+
+If we have the function:
+```kt
+fun add(a: Int, b: Int): Int {
+    return a + b
+}
+```
+The Function Type would be:
+```kt
+(Int, Int) -> Int
+```
+
+Function Types follow this general format:
+```
+(DataTypeOfParemeter, ...) -> ReturnType
+```
+
+In our `add(a: Int, b: Int)` function, we have 2 parameters of type `Int`, and then the function returns an `Int`. 
+
+Knowing this, let's store our `add()` function in a variable and look at the syntax!
+```kt
+val addObject: (Int, Int) -> Int = ::add
+
+// note: the Kotlin compiler is smart enough to figure out the Function Type by itself
+// thus we could equivalently write:
+// val addObject = ::add
+```
+
+Notice how we write our Function Type in the same place as we wrote our Data Types for other variables. 
+
+To pass the specific function, we add `::` in front of the function name (this generates a reference to the function), and then leave out the parentheses `()`. 
+
+We can now call this new function the same was as we called our original `add()` function:
+```kt
+println( addObject(5, 13) ) //OUTPUT: 18
+```
+
+Here's another example of a function with no parameters and no explicit return:
+```kt
+fun helloInChinese() { // implicitly returns Unit type
+    println("Nihao")
+}
+
+val helloChineseObject: () -> Unit = ::helloInChinese
+```
+
+As we can see, `helloInChinese()` takes in no parameters and does not return anything. Thus the Function Type is `() -> Unit`. 
+
+#### Returning Functions from Functions
+Functions can _also_ return other functions! Mind blowing? Let's look at an example:
+```kt
+fun multiplier(score: Int) {
+    return 2 * score
+}
+fun noMultiplier(score: Int) {
+    return score
+}
+
+fun getGameScore(hasPowerUp: Boolean) : (Int) -> Int {
+    if (hasPowerUp == true)
+        return ::multiplier
+    else
+        return ::noMultiplier
+}
+```
+
+In this case we can see that the return type of `gameStart()` is the Function Type of the functions we return. We can also see that we return the functions by adding `::` to the name and dropping the `()`. 
+
+In the case, if we call the function like this: `getGameScore(true)`, we'll be returned a reference to the function `multiplier()`. If we call it like this: `getGameScore(false)`, we'll be returned a reference to `noMultiplier()`. 
+
+#### Passing Functions as Parameters
+In Kotlin, we are also able to pass a function as a parameter to another function. The format is the same as how we'd pass normal parameters. Let's look at an example:
+```kt
+fun square(num: Int) : Int {
+    return num * num
+}
+fun cube(num: Int) : Int {
+    return num * num * num
+}
+
+fun applyAndSum(a: Int, b: Int, m_fun: (Int) -> Int) : Int {
+    return m_fun(a) + m_fun(b)
+}
+
+applyAndSum(1, 2, ::square) // OUTPUT: 5
+applyAndSum(2, 2, ::cube) // OUTPUT: 16
+```
+
+Notice that in the paramter list, we specify the Function Type for `m_fun`, just as we specify the Data Type `Int` for `a` and `b`. 
+
+When we want to use the function we passed in our parameter, we simply call it with the parameter name and the proper arguments. 
+
+In this case, `square()` and `cube()` both take in integers, so we must call `m_fun()`, with an integer as the parameter. 
+
+If this seems strange or confusing, know that this will become more familiar with practice!
+
 ## Classes
 Sometimes we need a way to group similar data together. In Kotlin, we are able to use a class to do this. Think of classes as a special more complicated data type that a programmer creates out of pre-existing data types. 
 
@@ -350,8 +560,8 @@ class Idol
 But this is pretty boring. Let's add some member variables to this class. 
 ```kt
 class Idol {
-    name: String = "Solar"
-    age: Int = 28
+    val name: String = "Solar"
+    var age: Int = 28
 }
 ```
 Now we can instantiate this and access our member variables with the `.` dot operator!
@@ -474,6 +684,9 @@ class Student(val name: String, var age: Int) {
 }
 
 class Idol(val name: String, var age: Int) {
+    fun dance() {
+        println("I love to dance")
+    }
     fun sing() {
         println("Mama mama mooo")
     }
@@ -531,7 +744,7 @@ As we can see, both Idol and Student are able to use the `sing()` function defin
 
 We call the Person class the **super class** and Idol and Student **child classes**. 
 
-Okay, but in our example from earlier, Idol had it's own way to sing that differed from Person. Kotlin allows us to _override_ the function in the super class. 
+Okay, but in our example from earlier, Idol had it's own way to sing that differed from Person. So how do we write _specialized_ functions for each of these classes? Kotlin allows us to specialize (or what we call _override_) the function in the super class. 
 
 First we specify in the parent class that `sing()` is a function we wish to override in a child class. 
 ```kt
@@ -567,17 +780,20 @@ taemin.sing() // OUTPUT: Mama mama moo
 connie.sing() // OUTPUT: Hello darkness my old friend
 ```
 
-Earlier when we had defined the Student class, we also had an extra function called `eatFood()`, which was not in the Idol class. We can simply add this to our Student class now. 
+Earlier when we had defined the Student class, we also had an extra function called `eat()`, which was not in the Idol class. Similarly, the Idol class had a dance function that the Student class did not have. We can simply add these to their respective classes. 
 
 ```kt
 class Idol(val name: String, var age: Int): Person(name, age) {
+    fun dance() {
+        println("I love to dance")
+    }
     override fun sing() {
         println("Mama mama moooo")
     }
 }
 
 class Student(val name: String, var age: Int): Person(name, age) {
-    fun eatFood() {
+    fun eat() {
         println("I <3 BPlate")
     }
     override fun sing() {
@@ -591,8 +807,8 @@ Now our Students can properly eat and our Idols can't (oof).
 val taemin = Idol("Taemin", 26)
 val connie = Student("Connie", 20)
 
-connie.eatFood() // OUTPUT: I <3 BPlate
-taemin.eatFood() // OUTPUT: Error: function doesn't exist in this class
+connie.eat() // OUTPUT: I <3 BPlate
+taemin.eat() // OUTPUT: Error: function doesn't exist in this class
 ```
 
 As we can see, inheritance is a powerful tool that allows us to generalize classes and then have other classes make them more specific. We can not only have single-level inheritance (like the previous example), we can classes inherit from classes that inherit from _other_ classes.
