@@ -41,7 +41,7 @@ string name = "Jody";
 name = "Jody"
 ```
 ```js
-// java
+// javascript
 var name = "Jody"
 ```
 
@@ -58,15 +58,15 @@ Let's break down what these mean.
 
 `val` or `var` specifies that we are declaring a variable. Every time we declare a variable we _must_ start the declaration with `var` or `val`. 
 
->What's the difference?
+What's the difference?
 
->`var` is short for _variable_, which means that we are able to change the value of this _variable_ at any time. In programming, we'll call this type of data _mutable_. 
+`var` is short for _variable_, which means that we are able to change the value of this _variable_ at any time. In programming, we'll call this type of data _mutable_. 
 
->`val` is short for _value_, which means that once we assign this a value, we **cannot change the _value_ of the variable**. In programming we would say that `val` is _immutable_. 
+`val` is short for _value_, which means that once we assign this a value, we **cannot change the _value_ of the variable**. In programming we would say that `val` is _immutable_. 
 
 Next we have the parameter name. 
 
->Variable naming in Kotlin follows `camelCase`. This means that you `nameYourVariablesLikeThis`.
+Variable naming in Kotlin follows `camelCase`. This means that you `nameYourVariablesLikeThis`.
 
 Next we have a `:` followed by the data type. Here are the common data types in Kotlin:
 
@@ -122,8 +122,8 @@ Often times when we code, we only want to run code _if_ a certain condition is t
 
 In Kotlin, this might look something like this:
 ```kt
-var bankAccount: Int = $19
-val kConTix: Int = $1000
+var bankAccount: Int = 19
+val kConTix: Int = 1000
 
 if (bankAccount > kConTix) {
     bankAccount -= kConTix
