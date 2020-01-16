@@ -832,6 +832,8 @@ And those are the basics of Kotlin! Try out these practice problems and begin fa
 
 In our future sessions, we will be using Kotlin to control many parts of our Android app, so familiarizing yourself with the syntax will help increase your understanding later on :)
 
+Try not to look at the answers until you've tried these yourself!
+
 # Hacksprint Kotlin Challenges
 ## Variables and Strings
 ### String?... String.
@@ -886,6 +888,88 @@ fun reciprocal(num: Int): Double? {
         return null
     }
     return 1.0/num
+}
+```
+</details>
+
+### Google Translate 
+2. Given the three functions below, write another function called `sayHelloIn(language: String)` that will take in a single String parameter called `language`. If `language` is equals `chinese`, `bruin`, or `english`, return its respective function. If the `language` is not any of these, return the option for `bruin`. 
+```kotlin
+fun chinese() {
+    println("Nihao")
+}
+fun english() {
+    println("Hello")
+}
+fun bruin() {
+    println("rawr")
+}
+``` 
+Here is how we would use the new function:
+```kotlin
+val speakChinese = sayHelloIn("chinese")
+val speakBruin = sayHelloIn("bruin")
+val speakHawaiian = sayHelloIn("hawaiian")
+
+speakChinese() // OUTPUT: Nihao
+speakBruin() // OUTPUT: rawr
+speakHawaiian() //OUTPUT: rawr
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```kotlin
+fun sayHelloIn(language: String): () -> Unit {
+    if (language == "chinese") 
+        return ::chinese
+    else if (language == "english")
+        return ::english
+    else {
+        return ::bruin
+    }
+}
+```
+</details>
+
+### String Changer
+We are given two functions that go through an inputted String and return an altered version of the String. Write a third function called `changeString` that takes in two parameters. Our first parameter will take in an input String called `input`. The second parameter, `alter`, can be passed one of the functions below:
+
+Here are the given functions:
+```kotlin
+// understanding the exact implementation of these functions is not important (but HINT: knowing the Data Types of the parameters and the Return Type is important)
+
+fun removeVowels(input: String): String {
+    // this just returns a string with all the vowels removed
+    val vowels = Regex("[aeiouAEIOU]")
+    return input.replace(regex=vowels, replacement="")
+}
+
+fun replaceVowels(input: String): String {
+    // this returns a string with all vowels changed to an *
+    val vowels = Regex("[aeiouAEIOU]")
+    return input.replace(regex=vowels, replacement="*")
+}
+
+```
+We could use our new function like this:
+```kotlin
+val original = "I love UCLA"
+println(changeString(original, ::removeVowels))
+println(changeString(original, ::replaceVowels))
+```
+```
+OUTPUT:
+ lv UCL
+* l*v* *CL*
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```kotlin
+fun changeString(input: String, alter: (String) -> String): String {
+    return alter(input)
 }
 ```
 </details>
