@@ -106,6 +106,12 @@ So declaring variables follows this format:
 var/val nameOfVariable: DataType = value
 ```
 
+Note: The Kotlin compiler is actually pretty smart and most of the time can figure out what the Data Type of a variable is without you having to specify it! So variable declarations like this are perfectly acceptable
+
+```kotlin
+var name = "Jody" // String type can be inferred
+```
+
 ### All Data Types are Objects
 All these data types under the hood are represented as _objects_. This becomes convenient because for each data type, Kotlin provides some useful object properties and functions that we can access.
 
@@ -591,9 +597,9 @@ class Idol {
     val name: String
     var age: Int
 
-    constructor(_name: String, _age: Int) {
-        name = _name
-        age = _age
+    constructor(name: String, age: Int) {
+        this.name = name
+        this.age = age
     }
 }
 ```
@@ -615,11 +621,18 @@ Okay, so we have a _secondary constructor_, then do we have a _primary construct
 
 Let's convert our secondary constructor from the last example to a primary constructor. 
 ```kotlin
-class Idol(_name: String, _age: Int) {
-    val name: String = _name
-    var age: Int = _age
+class Idol(name: String, age: Int) {
+    val name: String
+    var age: Int
+    
+    init {
+        this.name = name
+        this.age = age
+    }
 }
 ```
+Notice now we need to add an `init` block so we can still initialize our parameters. We've moved up the constructor parameters directly inline with the class name, but the code in the secondary constructor block is moved to the `init` block. 
+
 We can call this create objects from with the class the exact same way as before. 
 
 ```kotlin
@@ -630,14 +643,15 @@ println(hwasa.age) // OUTPUT: 24
 
 But WAIT, there's more!
 
-As we can see, we have to name our constructor parameter something different from the _actual_ member variable name, otherwise we end up unable to set the member variable in the class. (We can get around this with the `this` keyword, but Kotlin gives us a way to avoid the problem entirely). 
-
 In Kotlin, we can declare our member variables _directly in the constructor_. 
 
 Let's do this with our `name` member variable. 
 ```kotlin
-class Idol(val name: String, _age: Int) {
-    var age: Int = _age
+class Idol(val name: String, age: Int) {
+    var age: Int
+    init {
+        this.age = age
+    }
 }
 ```
 And then let's do the same with our `age` member variable. 
@@ -721,6 +735,11 @@ class Person (val name: String, var age: Int) {
     }
 }
 ```
+```
+val gene = Person("Gene Block", 71)
+println(gene.age) // OUTPUT: 71
+gene.sing() // OUTPUT: Happy Birthday to you...
+```
 
 By default, classes in Kotlin **do not** allow inheritance. We must _open_ the class to inheritance. Thus we prepare our Person class to be open for inheritance by adding the keyword `open` in front. 
 ```kotlin
@@ -743,20 +762,20 @@ In order for Idol and Student to inherit from the person class, we need to add a
 
 Now we can do this:
 ```kotlin
-val taemin = Idol("Taemin", 26)
+val hwasa = Idol("Hwasa", 24)
 val connie = Student("Connie", 20)
 
-println(taemin.age) // OUTPUT: 26
+println(hwasa.age) // OUTPUT: 24
 println(connie.age) // OUTPUT: 20
-taemin.sing() // OUTPUT: Happy Birthday to you...
+hwasa.sing() // OUTPUT: Happy Birthday to you...
 connie.sing() // OUTPUT: Happy Birthday to you...
 ```
 
-As we can see, both Idol and Student are able to use the `sing()` function defined in the Person class! 
+As we can see, both Idol and Student are able to use the `sing()` function defined in the Person class! They have _inherited_ the `sing()` function!
 
 We call the Person class the **super class** and Idol and Student **child classes**. 
 
-Okay, but in our example from earlier, Idol had it's own way to sing that differed from Person. So how do we write _specialized_ functions for each of these classes? Kotlin allows us to specialize (or what we call _override_) the function in the super class. 
+Okay, but in our example from earlier, Idol had it's own way to sing that differed from Person. So how do we write _specialized_ functions for each of these classes? Kotlin allows us to specialize (or what we call _override_) the function from the super class. 
 
 First we specify in the parent class that `sing()` is a function we wish to override in a child class. 
 ```kotlin
@@ -785,14 +804,14 @@ class Student(val name: String, var age: Int, val id: Int): Person(name, age) {
 Now when we call our code, Idol and Student objects will have their own specialized `sing()` functions called. 
 
 ```kotlin
-val taemin = Idol("Taemin", 26)
+val hwasa = Idol("Hwasa", 24)
 val connie = Student("Connie", 20)
 
-taemin.sing() // OUTPUT: Mama mama moo
+hwasa.sing() // OUTPUT: Mama mama moo
 connie.sing() // OUTPUT: Hello darkness my old friend
 ```
 
-Earlier when we had defined the Student class, we also had an extra function called `eat()`, which was not in the Idol class. Similarly, the Idol class had a dance function that the Student class did not have. We can simply add these to their respective classes. 
+Earlier when we had defined the Student class, we also had an extra function called `eat()`, which was not in the Idol class. Similarly, the Idol class had a `dance()` function that the Student class did not have. We can simply add these to their respective classes. 
 
 ```kotlin
 class Idol(val name: String, var age: Int): Person(name, age) {
@@ -816,11 +835,11 @@ class Student(val name: String, var age: Int, val id: Int): Person(name, age) {
 
 Now our Students can properly eat and our Idols can't (oof). 
 ```kotlin
-val taemin = Idol("Taemin", 26)
+val hwasa = Idol("Hwasa", 24)
 val connie = Student("Connie", 20)
 
 connie.eat() // OUTPUT: I <3 BPlate
-taemin.eat() // OUTPUT: Error: function doesn't exist in this class
+hwasa.eat() // OUTPUT: Error: function doesn't exist in this class
 ```
 
 As we can see, inheritance is a powerful tool that allows us to generalize classes and then have other classes make them more specific. We can not only have single-level inheritance (like the previous example), we can classes inherit from classes that inherit from _other_ classes.
@@ -893,7 +912,7 @@ fun reciprocal(num: Int): Double? {
 </details>
 
 ### Google Translate 
-2. Given the three functions below, write another function called `sayHelloIn(language: String)` that will take in a single String parameter called `language`. If `language` is equals `chinese`, `bruin`, or `english`, return its respective function. If the `language` is not any of these, return the option for `bruin`. 
+2. Given the three functions below, write another function called `sayHelloIn(language: String)` that will take in a single String parameter called `language`. If `language` equals `chinese`, `bruin`, or `english`, return its respective function. If the `language` is not any of these, return the option for `bruin`. 
 ```kotlin
 fun chinese() {
     println("Nihao")
@@ -937,7 +956,8 @@ We are given two functions that go through an inputted String and return an alte
 
 Here are the given functions:
 ```kotlin
-// understanding the exact implementation of these functions is not important (but HINT: knowing the Data Types of the parameters and the Return Type is important)
+// understanding the exact implementation of these functions is not important 
+// (but HINT: knowing the Data Types of the parameters and the Return Type is important)
 
 fun removeVowels(input: String): String {
     // this just returns a string with all the vowels removed
