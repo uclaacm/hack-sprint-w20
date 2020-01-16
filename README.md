@@ -1,4 +1,4 @@
-# Hack Sprint Resources - Winter 2019
+# Hack Sprint Resources - Winter 2020
 
 ## Welcome to Hack Sprint!
 

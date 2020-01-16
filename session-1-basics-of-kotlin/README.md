@@ -42,7 +42,7 @@ Up until the last few years, Android was done entirely through Java. But as well
 Though they initially created it to be used in house, it eventually spread to the open source community, where a man by the name of Jake Wharton, who worked at Square, started making it really popular by making open source libraries for it. Around this time, Google themselves began embracing Kotlin as a modern language for Android Development, and encouraged its use. Now, its the “main” language for Android Development. 
 
 ## Data Types
-In programming, we use variables as a way to hold and store data. Across different languages you may be see varying syntaxes for this. 
+In programming, we use variables as a way to hold and store data. Across different languages you may see varying syntaxes for this. 
 ```cpp
 // C++
 string name = "Jody";
@@ -75,7 +75,7 @@ What's the difference?
 
 `val` is short for _value_, which means that once we assign this a value, we **cannot change the _value_ of the variable**. In programming we would say that `val` is _immutable_. 
 
-Next we have the parameter name. 
+Next we have the variable name. 
 
 Variable naming in Kotlin follows `camelCase`. This means that you `nameYourVariablesLikeThis`.
 
@@ -123,7 +123,7 @@ println(maxValOfInt.SIZE_BITS) //OUTPUT: 32
 
 // fun with strings
 val group: String = "Blackpink"
-println(group.length()) //OUTPUT: 9
+println(group.length //OUTPUT: 9
 println(group.lastIndex()) // OUTPUT: 8
 println(group.first()) //OUTPUT: 'B'
 
@@ -171,9 +171,9 @@ Take this C++ code for example:
 char* m_friend = NULL;
 cout << *m_friend;  // throws a NullPointerException and DIES
 ```
-Here we try access the length of a string that doesn't exist. The program freaks out and throws an exception and stops running the program. 
+Here we try access a string that doesn't exist. The program freaks out and throws an exception and stops running the program. 
 
-In Kotlin, we now must call functions and access member variables differently. 
+In Kotlin, we now must call functions and access member variables through nullable types differently. 
 
 ```kotlin
 var friend: String? = null
@@ -187,7 +187,6 @@ OUTPUT:
 null
 5
 ```
-
 
 Notice that we add a `?` _before_ the dot operator. We call this a **safe call**. Basically we can safely ensure that our program will not throw a NullPointerException. 
 
@@ -211,7 +210,7 @@ println(
 
 If `length` is `null`, we don't really want to return `null`, but `0` instead. When `length` is not `null`, we just return its value. 
 
-Kotlin gives a very shorthand to do this with the **Elvis Operator**. 
+Kotlin gives a shorthand to do this with the **Elvis Operator**. 
 
 The above code can be equivalently written as:
 ```kotlin
@@ -221,7 +220,7 @@ val length: Int? = friend?.length // null
 println( length ?: 0 ) // OUTPUT: 0
 ```
 
-What this does: Kotlin checks if the value on to the left of the `?:` is null. If it is not `null`, then return the value. Otherwise return the value to the right of `?:`. 
+What this does: Kotlin checks if the value to the left of the `?:` is `null`. If it is not `null`, then return the value. Otherwise return the value to the right of `?:`. 
 
 
 Why is this called the Elvis Operator?
@@ -402,7 +401,7 @@ OUTPUT:
 ...
 99
 ```
-> Notice, this _won't_ print out 100 even though we did an inclusive range. This is because when `i` equal **99** and then increments by **2**, `i` becomes **101**, which is out of the range **1 to 100**.
+> Notice, this _won't_ print out 100 even though we did an inclusive range. This is because when `i` equals **99** and then increments by **2**, `i` becomes **101**, which is out of the range **1 to 100**.
 
 
 >_Further Reading_: If you are interested in learning more, look up the `when` statement in Kotlin. This is Kotlin's version of a `switch` statement. However, since there is nothing that we can't do with an `if/else if/else` block that we can do with a `switch` statement, we will not cover this today. 
@@ -450,7 +449,7 @@ fun speakChinese(): Unit {
 ```
 
 ### Functions References
-In Kotlin, functions are incredibly versatile. Here is a list of some of the things we can do with functions:
+In Kotlin, functions are incredibly versatile. Here is a list of some of the things that functions can do:
 * be stored as a variable
 * be returned by a function
 * be passed as a function argument
@@ -496,9 +495,9 @@ val addObject: (Int, Int) -> Int = ::add
 
 Notice how we write our Function Type in the same place as we wrote our Data Types for other variables. 
 
-To pass the specific function, we add `::` in front of the function name (this generates a reference to the function), and then leave out the parentheses `()`. 
+To store the specific function, we add `::` in front of the function name (this generates a reference to the function), and then leave out the parentheses `()`. 
 
-We can now call this new function the same was as we called our original `add()` function:
+We can now call this new function the same way we called our original `add()` function:
 ```kotlin
 println( addObject(5, 13) ) //OUTPUT: 18
 ```
@@ -515,7 +514,7 @@ val helloChineseObject: () -> Unit = ::helloInChinese
 As we can see, `helloInChinese()` takes in no parameters and does not return anything. Thus the Function Type is `() -> Unit`. 
 
 #### Returning Functions from Functions
-Functions can _also_ return other functions! Mind blowing? Let's look at an example:
+Functions can _also_ be returned other functions! Mind blowing? Let's look at an example:
 ```kotlin
 fun multiplier(score: Int) {
     return 2 * score
@@ -633,7 +632,7 @@ class Idol(name: String, age: Int) {
 ```
 Notice now we need to add an `init` block so we can still initialize our parameters. We've moved up the constructor parameters directly inline with the class name, but the code in the secondary constructor block is moved to the `init` block. 
 
-We can call this create objects from with the class the exact same way as before. 
+We can use this to create objects from with the class the exact same way as before. 
 
 ```kotlin
 val hwasa = Idol("Hwasa", 24)
@@ -659,7 +658,7 @@ And then let's do the same with our `age` member variable.
 class Idol(val name: String, var age: Int) {
 }
 ```
-Now that are class is now empty, we can get rid of the brackets all together. 
+Now that our class is empty, we can get rid of the brackets all together. 
 ```kotlin
 class Idol(val name: String, var age: Int)
 ```
@@ -668,9 +667,9 @@ This is equivalent to our original class!
 
 
 ### Member Functions
-Let's now add functions to this class. Whenever we instantiate an object of the class we will now be able to use this function on this object. 
+Let's now add functions to this class. Whenever we instantiate an object of the class we will be able to use this function on this object. 
 
-Let's continue with out Idol example and add a function that allows our idol to sing. 
+Let's continue with our Idol example and add a function that allows our Idol to sing. 
 
 ```kotlin
 class Idol(val name: String, var age: Int) {
@@ -777,7 +776,7 @@ We call the Person class the **super class** and Idol and Student **child classe
 
 Okay, but in our example from earlier, Idol had it's own way to sing that differed from Person. So how do we write _specialized_ functions for each of these classes? Kotlin allows us to specialize (or what we call _override_) the function from the super class. 
 
-First we specify in the parent class that `sing()` is a function we wish to override in a child class. 
+First we specify in the superclass that `sing()` is a function we wish to override in a child class. 
 ```kotlin
 open class Person (val name: String, var age: Int) {
     open fun sing() {
@@ -842,7 +841,7 @@ connie.eat() // OUTPUT: I <3 BPlate
 hwasa.eat() // OUTPUT: Error: function doesn't exist in this class
 ```
 
-As we can see, inheritance is a powerful tool that allows us to generalize classes and then have other classes make them more specific. We can not only have single-level inheritance (like the previous example), we can classes inherit from classes that inherit from _other_ classes.
+As we can see, inheritance is a powerful tool that allows us to generalize classes and then have other classes make them more specific. We can not only have single-level inheritance (like the previous example), we can have classes inherit from classes that inherit from _other_ classes.
 
 If this seems like a confusing concept, it will begin to make more sense as you get practice with it. 
 
