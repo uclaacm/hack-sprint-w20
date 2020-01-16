@@ -34,6 +34,7 @@ Before we begin, it will be helpful to have a basic understanding of a few topic
 - [Functions](#functions)
 - [Classes](#classes)
 - [Inheritance](#inheritance)
+- [Practice Problems](#practice-problems)
 
 ## A Brief History of Kotlin
 Up until the last few years, Android was done entirely through Java. But as well known and widely used as Java is, it had its issues. It didn’t have some of the tools that newer languages like Swift or Python possessed, and it needed to be updated to fit some of the newer language standards. That’s why a company called JetBrain created Kotlin to be an in-house used interoperable version of Java that was open to anyone. 
@@ -836,30 +837,39 @@ In our future sessions, we will be using Kotlin to control many parts of our And
 ### String?... String.
 1. Write some Kotlin code that declares two declares a `String` variable called `school`, sets it to "You See Ell Aye", than prints the string and it's length (using the `length` function).
 
-**Answer:**
+<details>
+<summary><b>Answer:</b></summary>
+
 ```kotlin
 var school = "You See Ell Aye"
 println(school)
 println(school.length)
 ```
+</details>
 
 2. Change the `school` variable from before to be a `String?`.  Something in your program will break here.  Try fixing it.
 
-**Answer:**
+<details>
+<summary><b>Answer:</b></summary>
+
 ```kotlin
 var school: String? = "You See Ell Aye"
 println(school)
 println(school?.length)
 ```
+</details>
 
 3. Set `school` to `null` and print it. 
 
-**Answer:**
+<details>
+<summary><b>Answer:</b></summary>
+
 ```kotlin
 var school: String? = null
 println(school)
 println(school?.length)
 ```
+</details>
 
 ## Functions
 ### Repeat Yourself
