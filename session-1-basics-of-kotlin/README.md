@@ -829,6 +829,228 @@ And those are the basics of Kotlin! Try out these practice problems and begin fa
 
 In our future sessions, we will be using Kotlin to control many parts of our Android app, so familiarizing yourself with the syntax will help increase your understanding later on :)
 
+# Hacksprint Kotlin Challenges
+## Variables and Strings
+### String?... String.
+1. Write some Kotlin code that declares two declares a `String` variable called `school`, sets it to "You See Ell Aye", than prints the string and it's length (using the `length` function).
+
+**Answer:**
+```kotlin
+var school = "You See Ell Aye"
+println(school)
+println(school.length)
+```
+
+2. Change the `school` variable from before to be a `String?`.  Something in your program will break here.  Try fixing it.
+
+**Answer:**
+```kotlin
+var school: String? = "You See Ell Aye"
+println(school)
+println(school?.length)
+```
+
+3. Set `school` to `null` and print it. 
+
+**Answer:**
+```kotlin
+var school: String? = null
+println(school)
+println(school?.length)
+```
+
+## Functions
+### Repeat Yourself
+1. Write a function called `reciprocal` that takes in `num` of type `Int` and returns the reciprocal (`1.0/num`) of type `Double?`.
+   1. If `num` is 0, don't do any division and return null.
+
+**Answer:**
+```Kotlin
+fun reciprocal(num: Int): Double? {
+    if(num == 0){
+        return null
+    }
+    return 1.0/num
+}
+```
+
+## Conditionals
+### Hippopotomonstrosesquippedaliophobia
+1. Write a function that takes a `String` and prints it only if its length is less than 7.  If its length is 7 or more, print `"scared"` instead.
+
+<details>
+<summary><b>Answer:</b></summary>
+<p>
+```kotlin
+fun hippophob(word: String) {
+    if(word.length < 7){
+        println(word)
+    }
+    else {
+        println("scared")
+    }
+}
+```
+<p>
+</details>
+
+## Loop practice
+### Alphabot
+Write a loop that prints out the alphabet in reverse, each character on a newline
+
+**Answer:**
+```kotlin
+for (letter in 'z' downTo 'a') {
+    println(letter)
+}
+```
+
+### We're an Odd Group
+1. Write a loop that prints out only odd numbers from 1 to 19 (inclusive)
+
+**Answer:**
+```kotlin
+for (name in 1..19 step 2) {
+    println(name)
+}
+
+//Alternate
+for (num in 1 until 20) {
+    if (num % 2 != 0) {
+        println(num)
+    }
+}
+```
+
+### Just Like the "Hot Singles"
+1. Print the phrase “BLACKPINK in your area” 3 times
+**Answer:**
+```kotlin
+repeat(3) {
+    println("BLACKPINK in your area")
+}
+
+//Alternate 1
+for(x in 1..3) {
+    println("BLACKPINK in your area")
+}
+
+//Alternate 2
+var i = 0
+while(i < 3) {
+    println("BLACKPINK in your area")
+    i++
+}
+```
 
 
+## Classes
+### Don't "Have" Class, Create It
+1. Create a class named `Hacksprint` that initializes a variable and prints it out when a `Hacksprint` object is created
 
+**Answer:**
+```kotlin
+class Hacksprint(name: String) {
+    init {
+        println(name)
+    }
+}
+```
+
+### I'm a People Person
+1. Create a class called `Person` that has a constant property `species` that is set to `"human"` automatically for each object. Give the `Person` class have two properties that it gets from its constructor parameters:
+   1. a `name` of type `String` that **can't** be changed
+   2. a `hairColor` of type `String?` that **can** be changed
+
+**Answer:**
+```kotlin
+class Person(val name: String, var hairColor: String?) {
+    val species = "human"
+}
+```
+
+2. Change your `Person` class so that, whenever a `Person` is created, it prints "Hello, my name is [*put the name here*]"
+
+**Answer:**
+```kotlin
+class Person(val name: String, var hairColor: String?) {
+    val species = "human"
+    init {
+        println("Hello, my name is ${name}")
+    }
+}
+```
+
+3. Finally, add a function in the `Person` class that called `sayHairColor` that take no parameters and prints "My hair is [*put the color here*]"
+   1. HOLD IT! `hairColor` is **nullable**. You should also check if it is null before printing anything. If it is null, print "I'm bald, and I look fabulous!"
+
+**Answer:**
+```kotlin
+class Person(val name: String, var hairColor: String?) {
+    val species = "human"
+    init {
+        println("Hello, my name is ${name}")
+    }
+    fun sayHairColor() {
+        if(hairColor == null){
+            println("I'm bald, and I look fabulous")
+        }
+        else {
+            println("My hair is ${hairColor!!}")
+        }
+    }
+}
+```
+
+## Inheritance
+
+Create a class Shape with a subclass called Rectangle.  Define a variable for Shape that is also defined in Rectangle.
+
+**Answer:**
+```kotlin
+open class Shape {
+    open val vertexCount: Int = 0
+}
+class Rectangle : Shape() {
+    override val vertexCount = 4
+}
+```
+
+
+Now create a class Square that is a subclass of Rectangle. Have the Square class contains a function named printVertex() that prints out the number of vertices that it has. 
+
+**Answer:**
+```kotlin
+open class Shape {
+    open val vertexCount: Int = 0
+}
+open class Rectangle : Shape() {
+    override val vertexCount = 4
+}
+
+class Square : Rectangle() {
+    fun print() {
+        println(vertexCount)
+    }
+}
+```
+
+## Bonus
+### We Know, You Can't Even
+1. Write a function that takes in an `Int` (nonnegative) and returns a `Boolean`.  Return `true` if the number has an odd number of digits.  Otherwise, return `false`. 0 has one digit.
+
+**Answer:**
+```Kotlin
+fun cantEven(num: Int): Boolean {
+    var temp = num
+    if(temp == 0){
+        return true
+    }
+    var odd = false
+    while(temp > 0) {
+        temp = temp / 10
+        odd = !odd
+    }
+    return odd
+}
+```
