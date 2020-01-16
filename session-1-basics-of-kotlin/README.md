@@ -876,6 +876,9 @@ println(school?.length)
 1. Write a function called `reciprocal` that takes in `num` of type `Int` and returns the reciprocal (`1.0/num`) of type `Double?`.
    1. If `num` is 0, don't do any division and return null.
 
+<details>
+<summary><b>Answer:</b></summary>
+
 **Answer:**
 ```Kotlin
 fun reciprocal(num: Int): Double? {
@@ -885,6 +888,7 @@ fun reciprocal(num: Int): Double? {
     return 1.0/num
 }
 ```
+</details>
 
 ## Conditionals
 ### Hippopotomonstrosesquippedaliophobia
