@@ -751,13 +751,13 @@ open class Person (val name: String, var age: Int) {
 
 Let's have our Idol and Student class inherit from this class. 
 ```kotlin
-class Idol(val name: String, var age: Int): Person(name, age) {
+class Idol(name: String, age: Int): Person(name, age) {
 }
 
-class Student(val name: String, var age: Int, val id: Int): Person(name, age) {
+class Student(name: String, age: Int, val id: Int): Person(name, age) {
 }
 ```
-In order for Idol and Student to inherit from the person class, we need to add a `:` after the Idol and Student constructor and then call the Person constructor, ensuring to pass in the appropriate parameters. 
+In order for Idol and Student to inherit from the person class, we need to add a `:` after the Idol and Student constructor and then call the Person constructor, ensuring to pass in the appropriate parameters. We also remove `val` and `var` in front of `name` and `age`, since we've already defined them in our Person class. 
 
 Now we can do this:
 ```kotlin
@@ -787,13 +787,13 @@ open class Person (val name: String, var age: Int) {
 Next, we define our own `sing()` functions in Idol and Person with the `override` keyword. 
 
 ```kotlin
-class Idol(val name: String, var age: Int): Person(name, age) {
+class Idol(name: String, age: Int): Person(name, age) {
     override fun sing() {
         println("Mama mama moooo")
     }
 }
 
-class Student(val name: String, var age: Int, val id: Int): Person(name, age) {
+class Student(name: String, age: Int, val id: Int): Person(name, age) {
     override fun sing() {
         println("Hello darkness my old friend...")
     }
@@ -813,7 +813,7 @@ connie.sing() // OUTPUT: Hello darkness my old friend
 Earlier when we had defined the Student class, we also had an extra function called `eat()`, which was not in the Idol class. Similarly, the Idol class had a `dance()` function that the Student class did not have. We can simply add these to their respective classes. 
 
 ```kotlin
-class Idol(val name: String, var age: Int): Person(name, age) {
+class Idol(name: String, age: Int): Person(name, age) {
     fun dance() {
         println("I love to dance")
     }
@@ -822,7 +822,7 @@ class Idol(val name: String, var age: Int): Person(name, age) {
     }
 }
 
-class Student(val name: String, var age: Int, val id: Int): Person(name, age) {
+class Student(name: String, age: Int, val id: Int): Person(name, age) {
     fun eat() {
         println("I <3 BPlate")
     }
