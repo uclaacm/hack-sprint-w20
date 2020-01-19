@@ -108,7 +108,7 @@ else {
       1. Make a sandwich
       2. Take a shower
       3. Learn Swift
-7. If all went well, the a menu like this should show up after it's done!
+7. If all went well, the menu should show up like this after it's done!
 
 <img src="images/welcome.png" width=500>
 
