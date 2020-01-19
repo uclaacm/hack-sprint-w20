@@ -1,7 +1,7 @@
 # Hack Sprint Session 1: Basics of Kotlin
 **Date**: January 23rd, 2020
 **Location**: Covel 227
-**Teacher**: Timothy Rediehs
+**Teacher**: Sahen Rai
 
 ## Resources
 **Slides**
