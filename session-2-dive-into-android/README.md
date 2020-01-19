@@ -1,4 +1,4 @@
-# Hack Sprint Session 1: Basics of Kotlin
+# Hack Sprint Session 2: Dive into Android
 **Date**: January 23rd, 2020
 **Location**: Covel 227
 **Teacher**: Sahen Rai
