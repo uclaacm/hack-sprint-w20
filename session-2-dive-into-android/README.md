@@ -48,6 +48,7 @@ var myInt: Int? = /*[Int or null]*/
 var myStr: String? = myInt?.toString()
 ```
 <img src="images/SafeCall.png" width=500>
+
 A safe call does a similar thing as this:
 ```kotlin
 if (myInt != null) {
@@ -66,6 +67,7 @@ var myInt: Int? = /*[Int or null]*/
 var myStr: String? = myInt?.toString() ?: "Default"
 ```
 <img src="images/Elvis.png" width=500>
+
 The Elvis operator does something like this:
 ```kotlin
 if (myInt != null) {
@@ -84,6 +86,7 @@ var myInt: Int? = /*[Int or null]*/
 var myStr: String? = myInt!!.toString() //ERROR if myInt==null
 ```
 <img src="images/Assert.png" width=500>
+
 The Elvis operator does something like this:
 ```kotlin
 if (myInt != null) {
