@@ -11,8 +11,8 @@ In this repository, you'll find a guidemap to all the topics we introduce this q
 
 We hope you have a lot of fun this quarter, and please reach out to any of us if you have any questions or comments. Post any questions you may have to our [Facebook page](https://www.facebook.com/groups/1399200097134287/). 
 
-* Session 1: Intro to Kotlin
-* Session 2: Android Studio
+* [Session 1: Intro to Kotlin](https://github.com/uclaacm/hack-sprint-w20/tree/master/session-1-basics-of-kotlin)
+* [Session 2: Android Studio](https://github.com/uclaacm/hack-sprint-w20/tree/master/session-2-dive-into-android)
 * Session 3: Basic Views
 * Session 4: Navigation
 * Session 5: Dependencies
