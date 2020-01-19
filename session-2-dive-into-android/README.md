@@ -96,3 +96,33 @@ else {
   /*Big Ugly Error*/
 }
 ```
+
+## Setup: Installing Android Studio
+1. Go to the Android Studio [download page](https://developer.android.com/studio)
+2. Click the green "Download Android Studio" button
+3. Click the downloaded file to start the install
+4. Follow the instructions on your screen, they may vary based on your operating system
+5. Click through the installer. The default settings should work. If you're feeling edgy, you can choose the dark theme.
+6. After you click finish on the last page, the installer will download a lot of components. This may take some time.
+   1. Things you can do while Android Studio is downloading:
+      1. Make a sandwich
+      2. Take a shower
+      3. Learn Swift
+7. If all went well, the a menu like this should show up after it's done!
+
+<img src="images/welcome.png" width=500>
+
+## Setup: Try creating a project
+1. From the welcome menu, select "Start a new Android Studio project"
+2. On the "Choose your project" window, select **Empty Activity**
+3. The next page should ask you for some information for your project. You can name it anything. Make sure the language is **Kotlin** and "use AndroidX artifacts" is checked. You can set the minimum API version to **API 19: Android 4.4 (KitKat)**.
+4. Click finish
+
+## Setup: Try running the project
+1. You'll need an emulator! Select **Tools>AVD Manager**. It should show you your virtual devices which will probably be empty.
+2. Click **+Create a Virtual Device** and choose a device like the Pixel XL.
+3. Next, the **System Image Dialog** should appear. Select an option in the recommended list and click **next**.  We'll use **Q**.
+   1. NOTE: You'll likely have to download it by clicking the **download** link next to it. ⚠️**THIS MAY TAKE A WHILE** ⚠️.
+4. Click **finish** on the next window
+5. You should be able to run your project with the **green play button** on the top right corner of the screen now!
+   1. ℹ️ Starting the device the first time may take a minute
