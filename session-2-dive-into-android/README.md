@@ -97,6 +97,125 @@ else {
 }
 ```
 
+## An Important New Concept: Lambda Functions
+**Lambda functions** are a way to define functions on the fly. You'll often use them when you want to pass a function to another piece of code that is expected to call it later (this is aptly called a **callback**).
+
+Take the following code:
+```kotlin
+class Person(val name: String, var age: Int) {
+  fun celebrateBirthday() {
+    this.age++;
+  }
+}
+
+fun main(args: Array<String>) {
+  val tim = Person("Tim", 20)
+  tim.celebrateBirthday()
+  val alex = Person("Alex", 19)
+  alex.celebrateBirthday()
+}
+```
+
+When you take a look at this code, it appears that it has the correct behavior. On a `Person`'s birthday, their `age` increments by one, and that's it. This would be correct... if it wasn't so ***sad***. We do so much stuff on our birthdays! Have birthday parties! Eat with friends! Open birthday presents! Each person has something they do on their birthday. Let's try to represent this in our code.
+
+We need a few things:
+1. Create a **variable** that holds your **function** that says what you do on your birthday
+2. Set that variable for your `Person`
+3. Call the function from `celebrateBirthday`
+
+To do this, we can use **Lambda Functions**. The syntax of a lambda function is the following (you may have a `return` inside of the code):
+```kotlin
+//0 Parameters (usually: we'll talk about the exception)
+{
+    [code]
+}
+//1 Parameter
+{ parameterName: ParameterType ->
+    [code]
+}
+//2 Parameters
+{ parameterName0: ParameterType0, parameterName1: parameterType1 ->
+    [code]
+}
+//This pattern continues...
+```
+
+You can assign a lambda to a variable or even pass it to another function.
+```kotlin
+var myFunction = {
+    println("OMG I'M IN A LAMBDA")
+}
+
+button.setOnClickListener({ v -> 
+    Log.i("Is he... forshadowing?") 
+})
+```
+Let's add a `onBirthday` function to our `Person` class and set it to some default function.
+
+```kotlin
+class Person(val name: String, var age: Int) {
+    /*
+    1: Create a variable for your function
+    The type of our variable is (Person) -> Unit
+    In English: "A function that takes a Person and returns nothing"
+    */
+    var onBirthday: (Person) -> Unit = { me: Person ->
+        println("${me.name} is ${me.age} years old!")
+        //Same as: me.name + " is " + me.age + " years old!"
+    }
+
+    fun celebrateBirthday() {
+        this.age++;
+    }
+}
+
+fun main(args: Array<String>) {
+    val tim = Person("Tim", 20)
+    tim.celebrateBirthday()
+    
+    val alex = Person("Alex", 19)
+    alex.celebrateBirthday()
+}
+```
+ℹ️ Notice that the type of our `onBirthday` function is `(Person) -> Unit`. This makes it easier for us to tell the function whose birthday it is. Remember, when we are outside of the person class, we may not be able to access it's properties directly.
+
+Now, let's set `onBirthday` for our People.
+
+```kotlin
+fun main(args: Array<String>) {
+  val tim = Person("Tim", 20)
+  //2: We set the onBirthday function for the Person
+  tim.onBirthday = { me ->
+    println("Anyone want to play some Elder Dragon Hammered? 🐉🍻")
+    println("Whenever a player casts a blue spell that player takes a drink.")
+  }
+  tim.celebrateBirthday()
+  
+  val alex = Person("Alex", 19)
+  alex.onBirthday = { me ->
+    println("I, ${me.name}, am going to play League of Legends.")
+  }
+  alex.celebrateBirthday()
+}
+```
+
+Finally, we call that function from `celebrateBirthday`.
+
+```kotlin
+class Person(val name: String, var age: Int) {
+  var onBirthday: (Person) -> Unit = { me: Person ->
+    println("${me.name} is ${me.age} years old!")
+  }
+
+  fun celebrateBirthday() {
+    this.age++;
+    //3: Call the onBirthday function
+    this.onBirthday(this)
+  }
+}
+```
+From the example above, we see that lambda functions allow us to **quickly define one-off functions that we can give to other functions are variables to be called later**.
+
 ## Setup: Installing Android Studio
 1. Go to the Android Studio [download page](https://developer.android.com/studio)
 2. Click the green "Download Android Studio" button
