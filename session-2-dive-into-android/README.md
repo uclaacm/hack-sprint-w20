@@ -1,7 +1,7 @@
 # Hack Sprint Session 2: Dive into Android
 **Date**: January 23rd, 2020
 **Location**: Covel 227
-**Teacher**: Sahen Rai
+**Teacher**: Sahen Rai, Miles Wu, Timothy Rediehs
 
 ## Resources
 **Slides**
