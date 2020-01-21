@@ -64,7 +64,7 @@ else {
 Another way is the **Elvis Operator**.  The Elvis Operator lets you specify a default value in the case that your variable is null. It looks like this:
 ```kotlin
 var myInt: Int? = /*[Int or null]*/
-var myStr: String? = myInt?.toString() ?: "Default"
+var myStr: String = myInt?.toString() ?: "Default"
 ```
 <img src="images/Elvis.png" width=500>
 
