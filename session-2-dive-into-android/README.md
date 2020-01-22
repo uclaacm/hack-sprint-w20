@@ -2,7 +2,7 @@
 
 **Date**: January 23rd, 2020
 **Location**: Covel 227
-**Teacher**: Sahen Rai
+**Teacher**: Sahen Rai, Miles Wu, Timothy Rediehs
 
 ## Resources
 
@@ -80,7 +80,7 @@ Another way is the **Elvis Operator**. The Elvis Operator lets you specify a def
 
 ```k
 var myInt: Int? = /*[Int or null]*/
-var myStr: String? = myInt?.toString() ?: "Default"
+var myStr: String = myInt?.toString() ?: "Default"
 ```
 
 <img src="images/Elvis.png" width=500>
@@ -118,7 +118,134 @@ else {
 }
 ```
 
-## Setup: Instg Android Studio
+## An Important New Concept: Lambda Functions
+
+**Lambda functions** are a way to define functions on the fly. You'll often use them when you want to pass a function to another piece of code that is expected to call it later (this is aptly called a **callback**).
+
+Take the following code:
+
+```kotlin
+class Person(val name: String, var age: Int) {
+  fun celebrateBirthday() {
+    this.age++;
+  }
+}
+
+fun main(args: Array<String>) {
+  val tim = Person("Tim", 20)
+  tim.celebrateBirthday()
+  val alex = Person("Alex", 19)
+  alex.celebrateBirthday()
+}
+```
+
+When you take a look at this code, it appears that it has the correct behavior. On a `Person`'s birthday, their `age` increments by one, and that's it. This would be correct... if it wasn't so **_sad_**. We do so much stuff on our birthdays! Have birthday parties! Eat with friends! Open birthday presents! Each person has something they do on their birthday. Let's try to represent this in our code.
+
+We need a few things:
+
+1. Create a **variable** that holds your **function** that says what you do on your birthday
+2. Set that variable for your `Person`
+3. Call the function from `celebrateBirthday`
+
+To do this, we can use **Lambda Functions**. The syntax of a lambda function is the following (you may have a `return` inside of the code):
+
+```kotlin
+//0 Parameters (usually: we'll talk about the exception)
+{
+    [code]
+}
+//1 Parameter
+{ parameterName: ParameterType ->
+    [code]
+}
+//2 Parameters
+{ parameterName0: ParameterType0, parameterName1: parameterType1 ->
+    [code]
+}
+//This pattern continues...
+```
+
+You can assign a lambda to a variable or even pass it to another function.
+
+```kotlin
+var myFunction = {
+    println("OMG I'M IN A LAMBDA")
+}
+
+button.setOnClickListener({ v ->
+    Log.i("Is he... forshadowing?")
+})
+```
+
+Let's add a `onBirthday` function to our `Person` class and set it to some default function.
+
+```kotlin
+class Person(val name: String, var age: Int) {
+    /*
+    1: Create a variable for your function
+    The type of our variable is (Person) -> Unit
+    In English: "A function that takes a Person and returns nothing"
+    */
+    var onBirthday: (Person) -> Unit = { me: Person ->
+        println("${me.name} is ${me.age} years old!")
+        //Same as: me.name + " is " + me.age + " years old!"
+    }
+
+    fun celebrateBirthday() {
+        this.age++;
+    }
+}
+
+fun main(args: Array<String>) {
+    val tim = Person("Tim", 20)
+    tim.celebrateBirthday()
+
+    val alex = Person("Alex", 19)
+    alex.celebrateBirthday()
+}
+```
+
+ℹ️ Notice that the type of our `onBirthday` function is `(Person) -> Unit`. This makes it easier for us to tell the function whose birthday it is. Remember, when we are outside of the person class, we may not be able to access it's properties directly.
+
+Now, let's set `onBirthday` for our People.
+
+```kotlin
+fun main(args: Array<String>) {
+  val tim = Person("Tim", 20)
+  //2: We set the onBirthday function for the Person
+  tim.onBirthday = { me ->
+    println("Anyone want to play some Elder Dragon Hammered? 🐉🍻")
+    println("Whenever a player casts a blue spell that player takes a drink.")
+  }
+  tim.celebrateBirthday()
+
+  val alex = Person("Alex", 19)
+  alex.onBirthday = { me ->
+    println("I, ${me.name}, am going to play League of Legends.")
+  }
+  alex.celebrateBirthday()
+}
+```
+
+Finally, we call that function from `celebrateBirthday`.
+
+```kotlin
+class Person(val name: String, var age: Int) {
+  var onBirthday: (Person) -> Unit = { me: Person ->
+    println("${me.name} is ${me.age} years old!")
+  }
+
+  fun celebrateBirthday() {
+    this.age++;
+    //3: Call the onBirthday function
+    this.onBirthday(this)
+  }
+}
+```
+
+From the example above, we see that lambda functions allow us to **quickly define one-off functions that we can give to other functions are variables to be called later**.
+
+## Setup: Installing Android Studio
 
 1. Go to the Android Studio [download page](https://developer.android.com/studio)
    2.k the green "Download Android Studio" button
@@ -130,7 +257,7 @@ else {
       1. Make a sandwich
       2. Take a shower
       3. Learn Swift
-4. If all went well, the a mene this should show up after it's done!
+4. If all went well, the menu should show up like this after it's done!
 
 <img src="images/welcome.png" width=500>
 
@@ -144,11 +271,11 @@ else {
 ## Setup: Try running the project
 
 1. You'll need an emulator! Select **Tools>AVD Manager**. It should show you your virtual devices which will probably be empty.
-   2.k **+Create a Virtual Device** and choose a device the Pixel XL.
-2. Next, the **System Image Dialog** should appear. Select an option in the recommendet andk **next**. We'll use **Q**.
-   1. NOTE: You'lely have to download it byking the **download\*k next to it. ⚠️**THIS MAY TAKE A WHILE** ⚠️.
-      4.k **finish\*\* on the next window
-3. You should be able to run your project with the **green play button** on the top right corner of the screen now!
+2. Click **+Create a Virtual Device** and choose a device like the Pixel XL.
+3. Next, the **System Image Dialog** should appear. Select an option in the recommended list and click **next**. We'll use **Q**.
+   1. NOTE: You'll likely have to download it by clicking the **download** link next to it. ⚠️**THIS MAY TAKE A WHILE** ⚠️.
+4. Click **finish** on the next window
+5. You should be able to run your project with the **green play button** on the top right corner of the screen now!
    1. ℹ️ Starting the device the first time may take a minute
 
 ## Activities
