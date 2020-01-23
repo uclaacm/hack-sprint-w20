@@ -267,7 +267,7 @@ From the example above, we see that lambda functions allow us to **quickly defin
 1. From the welcome menu, select "Start a new Android Studio project"
 2. On the "Choose your project" window, select **Empty Activity**
 3. The next page should ask you for some information for your project. You can name it anything. Make sure the language is **Kotlin** and "use AndroidX artifacts" is checked. You can set the minimum API version to **API 19: Android 4.4 (KitKat)**.
-   4.k finish
+4. Finish
 
 ## Setup: Try running the project
 
@@ -276,8 +276,8 @@ From the example above, we see that lambda functions allow us to **quickly defin
 3. Next, the **System Image Dialog** should appear. Select an option in the recommended list and click **next**. We'll use **Q**.
    1. NOTE: You'll likely have to download it by clicking the **download** link next to it. ⚠️**THIS MAY TAKE A WHILE** ⚠️.
 4. Click **finish** on the next window
-5. You should be able to run your project with the **green play button** on the top right corner of the screen now!
-   1. ℹ️ Starting the device the first time may take a minute
+5. You should be able to run your project with the **green play button** on the top right corner of the screen now!  
+   ℹ️ Starting the device the first time may take a minute
 
 ## Activities
 
@@ -288,11 +288,11 @@ Every activity in a project describes some set of user interactions. These inter
 
 For example I could have a screen that acts as navigation for several different screens in my app. The user has the ability to interact with each tab to select which screen they want to navigate to. I would implement the logic that controls this navigation screen with a NavigationActivity and it would then be presented to the user like so:
 
-<img src="./images/NavActivityExample.png">
+<img src="./images/NavActivityExample.png" width="200">
 
 Another example is a screen that requests some user's login information. I would represent this Login screen with a corresponding LoginActivity file which handles the user input and submission button and present it to the user visually through something like this:
 
-<img src="./images/LoginActivityExample.png">
+<img src="./images/LoginActivityExample.png" width="200">
 
 When we actually work with activity files you will notice that the activity file contains code, more specifically an Activity class. It is important to understand that the activity file primarily serves to implement the logic of a screen (not the visual layout). This usually means keeping track of data that is displayed onto the screen, handling updates to the screen, and handling events, all of which we will get into later.
 
