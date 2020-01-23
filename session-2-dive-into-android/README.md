@@ -19,9 +19,9 @@ Please join our Facebook page for announcements and more! We will do our best to
 
 **Other useful resources**
 
-- [K Documentation](https://klang.org/docs/reference/)
-- [Interactive K Tutorial](https://blog.jetbrains.com/blog/2019/12/05/jetbrains-academy-k/)
-- [Google Codelabs](https://codelabs.developers.google.com/codelabs/k-android-training-welcome/index.html#1)
+- [Kotlin Documentation](https://kotlinlang.org/docs/reference/)
+- [Interactive Kotlin Tutorial](https://blog.jetbrains.com/blog/2019/12/05/jetbrains-academy-kotlin/)
+- [Google Codelabs](https://codelabs.developers.google.com/codelabs/kotlin-android-training-welcome/index.html#1)
 
 ## What we'll be learning today
 
@@ -46,7 +46,7 @@ You can think of a variable that is of a nullable type as a box that may contain
 
 To declare a type as nullable, you put a question mark after the type name like so:
 
-```k
+```kotlin
 var brothersName: String? = "Chris"
 
 var sistersName: String? //Initially null
@@ -57,7 +57,7 @@ sistersName = "Alyssa"
 
 When you want to use the value in your nullable box, you have to open the box. There are a few ways to do this. The first is called **Safe Calls**. Here is an example:
 
-```k
+```kotlin
 var myInt: Int? = /*[Int or null]*/
 var myStr: String? = myInt?.toString()
 ```
@@ -66,7 +66,7 @@ var myStr: String? = myInt?.toString()
 
 A safe call does a similar thing as this:
 
-```k
+```kotlin
 if (myInt != null) {
   myStr = myInt.toString()
 }
@@ -79,7 +79,7 @@ else {
 
 Another way is the **Elvis Operator**. The Elvis Operator lets you specify a default value in the case that your variable is null. It looke this:
 
-```k
+```kotlin
 var myInt: Int? = /*[Int or null]*/
 var myStr: String = myInt?.toString() ?: "Default"
 ```
@@ -88,7 +88,7 @@ var myStr: String = myInt?.toString() ?: "Default"
 
 The Elvis operator does something like this:
 
-```k
+```kotlin
 if (myInt != null) {
   myStr = myInt.toString()
 }
@@ -101,7 +101,7 @@ else {
 
 A final way to access your value is the **Not-null Assertion**. You should avoid using this if you can, because it will cause an error if your variable is null.
 
-```k
+```kotlin
 var myInt: Int? = /*[Int or null]*/
 var myStr: String? = myInt!!.toString() //ERROR if myInt==null
 ```
@@ -110,7 +110,7 @@ var myStr: String? = myInt!!.toString() //ERROR if myInt==null
 
 The Elvis operator does somethine this:
 
-```k
+```kotlin
 if (myInt != null) {
   myStr = myInt.toString()
 }
