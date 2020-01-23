@@ -36,7 +36,7 @@ Please join our Facebook page for announcements and more! We will do our best to
 
 Most of the time we want our variables to hold data, but there also also times when we don't yet know the value and wish to leave the variable empty.
 
-K provides us with a way to do this. We refer to these data types as nullable types.
+Kotlin provides us with a way to do this. We refer to these data types as nullable types.
 
 You can think of a variable that is of a nullable type as a box that may contain a value or null. When you want to use the value, you have to open the box, and tell the computer what to do if the box is empty. Do you use a default value? Do you stop executing an expression and just make it null? Maybe you crash the entire program? The world is your oyster. Nullable types give you the benefit of being able to set a variable to null while making it harder for these null values to break your program.
 
@@ -44,7 +44,7 @@ You can think of a variable that is of a nullable type as a box that may contain
 
 ### Declaring Nullable Types
 
-To declare a type as nullable, you put a question mark after the type name so:
+To declare a type as nullable, you put a question mark after the type name like so:
 
 ```k
 var brothersName: String? = "Chris"
@@ -55,7 +55,7 @@ sistersName = "Alyssa"
 
 ### Using Nullable Types
 
-When you woule to use the value in your nullable box, you have to open the box. There are a few ways to do this. The first is called **Safe Calls**. Here is an example:
+When you want to use the value in your nullable box, you have to open the box. There are a few ways to do this. The first is called **Safe Calls**. Here is an example:
 
 ```k
 var myInt: Int? = /*[Int or null]*/
@@ -86,7 +86,7 @@ var myStr: String = myInt?.toString() ?: "Default"
 
 <img src="images/Elvis.png" width=500>
 
-The Elvis operator does somethine this:
+The Elvis operator does something like this:
 
 ```k
 if (myInt != null) {
@@ -249,16 +249,16 @@ From the example above, we see that lambda functions allow us to **quickly defin
 ## Setup: Installing Android Studio
 
 1. Go to the Android Studio [download page](https://developer.android.com/studio)
-   2.k the green "Download Android Studio" button
-   3.k the downloaded file to start the install
-2. Follow the instructions on your screen, they may vary based on your operating system
-   5.k through the installer. The default settings should work. If you're fg edgy, you can choose the dark theme.
-3. After you finish on the last page, the installer will download a lot of components. This may take some time.
+2. Click the green "Download Android Studio" button
+3. Click the downloaded file to start the install
+4. Follow the instructions on your screen, they may vary based on your operating system
+5. Click through the installer. The default settings should work. If you're feeling edgy, you can choose the dark theme.
+6. After you finish on the last page, the installer will download a lot of components. This may take some time.
    1. Things you can do while Android Studio is downloading:
       1. Make a sandwich
       2. Take a shower
       3. Learn Swift
-4. If all went well, the menu should show up like this after it's done!
+7. If all went well, the menu should show up like this after it's done!
 
 <img src="images/welcome.png" width=500>
 
@@ -266,7 +266,7 @@ From the example above, we see that lambda functions allow us to **quickly defin
 
 1. From the welcome menu, select "Start a new Android Studio project"
 2. On the "Choose your project" window, select **Empty Activity**
-3. The next page should ask you for some information for your project. You can name it anything. Make sure the language is **K** and "use AndroidX artifacts" is checked. You can set the minimum API version to **API 19: Android 4.4 (KitKat)**.
+3. The next page should ask you for some information for your project. You can name it anything. Make sure the language is **Kotlin** and "use AndroidX artifacts" is checked. You can set the minimum API version to **API 19: Android 4.4 (KitKat)**.
    4.k finish
 
 ## Setup: Try running the project
@@ -284,21 +284,21 @@ From the example above, we see that lambda functions allow us to **quickly defin
 Any app made in android studio is composed of many activities so it is important to understand what an activity is, what the components of an activity are, and how we create activities.
 
 So what is an activity? \
-Every activity in a project implements some set of user interactions. These interactions are then presented to the user through the visual window that displays on their device. We summarize this concept on a high level by saying that an activity represents a screen in your app.
+Every activity in a project describes some set of user interactions. These interactions are then presented to the user through the visual window that displays on their device. We summarize this concept on a high level by saying that an activity represents a screen in your app.
 
-For example I could have a screen that acts as navigation for several different screens in my app. The user has the ay to interact with each tab to select which screen they woule to navigate to. I would oe the logic that controls this navigation screen with a NavigationActivity and it would then be presented to the usee so:
+For example I could have a screen that acts as navigation for several different screens in my app. The user has the ability to interact with each tab to select which screen they want to navigate to. I would implement the logic that controls this navigation screen with a NavigationActivity and it would then be presented to the user like so:
 
 <img src="./images/NavActivityExample.png">
 
-Another example is a screen that requests some user's login information. I would represent this Login screen with a corresponding LoginActivity file which handles the user input and submission button and present it to the user visually through somethine this:
+Another example is a screen that requests some user's login information. I would represent this Login screen with a corresponding LoginActivity file which handles the user input and submission button and present it to the user visually through something like this:
 
 <img src="./images/LoginActivityExample.png">
 
-When we actually work with activity files you will notice that the activity file contains code, more specifically an Activity class. It is important to understand that the activity file primarily serves to implement the logic of a screen (not the visual layout). This usually means keeping track of data that is displayed onto the screen, hag updates to the screen, and hag events, all of which we will get into later.
+When we actually work with activity files you will notice that the activity file contains code, more specifically an Activity class. It is important to understand that the activity file primarily serves to implement the logic of a screen (not the visual layout). This usually means keeping track of data that is displayed onto the screen, handling updates to the screen, and handling events, all of which we will get into later.
 
 ### The Main Activity
 
-If every activity represents a screen, the Main Activity is the launcher or startup screen. This acts as the entry point for your aation and will be the first thing to display whenever a user opens up your app.
+If every activity represents a screen, the Main Activity is the launcher or startup screen. This acts as the entry point for your application and will be the first thing to display whenever a user opens up your app.
 
 Whenever you create a new project, the Android Studio IDE should handle the creation of this MainActivity file for you.
 If you are in the 'Project' view of the project directory, then you can locate the MainActivity file under app > src > main > java > your.package.name > MainActivity
@@ -311,7 +311,7 @@ If you are in the 'Android' view of the project directory, then the MainActivity
 
 ## Layouts
 
-Now that we have esthed that activities implement the logic of a screen, what dictates the visuals? The answer is layouts.
+Now that we have established that activities implement the logic of a screen, what dictates the visuals? The answer is layouts.
 
 Layouts are implementations of the visual components associated with a screen. Essentially, layout files specify where everything on the screen is located and how it should look. If you are familiar with the browser, you can think of the layout as the HTML / CSS component of the screen.
 
@@ -325,7 +325,7 @@ If in the 'Android' view of directory, layouts can be found under app > res > la
 
 ### Activities with Layouts
 
-Every activity in your aation must have an associated layout, otherwise the set of interactions that an activity implements will not have a way to be presented visually to the user.
+Every activity in your application must have an associated layout, otherwise the set of interactions that an activity implements will not have a way to be presented visually to the user.
 
 We associate a layout with an activity using the `setContentView()` function call inside the `onCreate()` method. This sets the activity's layout when the activity is created.
 
@@ -351,16 +351,15 @@ Here are some examples of basic views:
 
 We combine these views together, specifying where they should be positioned and how they should look, to ultimately create a layout. With our completed layout, we finally have a fully functional activity with an associated display!
 
-
 ## A Tour of Android Studio
-Android Studio has a lot of different tools. Some of these we will be using, but many of them aren’t useful for right now. The main two files you want to look at as a beginner developer will be the MainActivity file, and activity_main.xml. 
+
+Android Studio has a lot of different tools. Some of these we will be using, but many of them aren’t useful for right now. The main two files you want to look at as a beginner developer will be the MainActivity file, and activity_main.xml.
 
 ![activity_main.xml](images/activity_main.png)
 
-Activity files and xml files are the two puzzle pieces of making a screen. Activity files are the code side of things and xml files represent the design of the screen. Eventually we will cover using multiples of these things in order to do multiple screens, but for now we don’t need to. 
+Activity files and xml files are the two puzzle pieces of making a screen. Activity files are the code side of things and xml files represent the design of the screen. Eventually we will cover using multiples of these things in order to do multiple screens, but for now we don’t need to.
 
-
-The build output pane in the bottom is the same as the output in all other IDEs. It tells you status messages about your app and also any debugging messages. 
+The build output pane in the bottom is the same as the output in all other IDEs. It tells you status messages about your app and also any debugging messages.
 
 ![MainActivity.kt](images/main_activity.png)
 
@@ -370,50 +369,50 @@ The folders inside the java folder are used for advanced testing. The other fold
 
 ![Tool Bar](images/toolbar.png)
 
-The tools area is where we’re going to create our virtual device. Click tools and AVD manager to create a virtual device to test your app. 
+The tools area is where we’re going to create our virtual device. Click tools and AVD manager to create a virtual device to test your app.
 
 ![Pick Virtual Device](images/avd.png)
 
-Pick the Pixel 2 to start, and then we can test our apps out! It will take around 7 GB of space so keep that in mind. 
-
-
+Pick the Pixel 2 to start, and then we can test our apps out! It will take around 7 GB of space so keep that in mind.
 
 ## Let’s Make an App!
-We will now be demoing a simple app so we can introduce the different panels and files we will use in app development. In this app, we will be making a button clicking counter! 
 
-This will have a button centered under a line of text. When we start pressing the button, the line of text will begin displaying the number of times we have clicked the button, updating whenever the button is clicked. 
+We will now be demoing a simple app so we can introduce the different panels and files we will use in app development. In this app, we will be making a button clicking counter!
 
-Before we begin, go to **File** and create a New Project. Create an Empty Activity and name the project HackSprintS2 with an API level of 19. 
+This will have a button centered under a line of text. When we start pressing the button, the line of text will begin displaying the number of times we have clicked the button, updating whenever the button is clicked.
+
+Before we begin, go to **File** and create a New Project. Create an Empty Activity and name the project HackSprintS2 with an API level of 19.
 
 ### Creating Our App Interface
-First we’ll need to create the buttons and text for our app. To do this, we’ll first need to navigate to our the design tab of the visual layout editor. 
+
+First we’ll need to create the buttons and text for our app. To do this, we’ll first need to navigate to our the design tab of the visual layout editor.
 
 ![Deisgn Tab](images/designview.png)
 
-Here we will be able to add different Views (Text, Buttons, etc.) to our app. 
+Here we will be able to add different Views (Text, Buttons, etc.) to our app.
 
-In this panel, on the top left, we should see a section called Palette. This contains different things we can add to our app. Currently we should see things like TextView, Button, ImageView, and a few more. 
+In this panel, on the top left, we should see a section called Palette. This contains different things we can add to our app. Currently we should see things like TextView, Button, ImageView, and a few more.
 
 ![Palette](images/palette.png)
 
-First, let’s add a TextView (a fancy name for text) from the area called Palette, drag and drop it from your app. 
+First, let’s add a TextView (a fancy name for text) from the area called Palette, drag and drop it from your app.
 
-
-When we select this TextView in our app or under Component, we should see the Attribute panel pop up on the right. In this section, we can change different properties about our TestView. There should be a field here called **id**. Change the for the textView to `numberText`. 
+When we select this TextView in our app or under Component, we should see the Attribute panel pop up on the right. In this section, we can change different properties about our TestView. There should be a field here called **id**. Change the for the textView to `numberText`.
 
 ![TextView ID](images/textid.png)
 
-Around our text, we should see 4 bubbles on each edge. These bubbles help us to position our text. Drag each of the bubbles to the edge to set the _constraints_ for the TextView (Our way of making sure our design elements are where we want them to be). 
+Around our text, we should see 4 bubbles on each edge. These bubbles help us to position our text. Drag each of the bubbles to the edge to set the _constraints_ for the TextView (Our way of making sure our design elements are where we want them to be).
 
 ![TextView with Constraints](images/textconstraints.png)
 
-Now let’s add a Button. Click the Button on our app or under the Component Tree and go to the attributes panel. Give the Button an **id** of `buttonClick`. 
+Now let’s add a Button. Click the Button on our app or under the Component Tree and go to the attributes panel. Give the Button an **id** of `buttonClick`.
 
-> Ensure that the tab that says id has a set id you can remember; later this ties the code in MainActivity.kt to the design elements. It connects the elements to your code, and you have to remember it to make this connection 
-
+> Ensure that the tab that says id has a set id you can remember; later this ties the code in MainActivity.kt to the design elements. It connects the elements to your code, and you have to remember it to make this connection
 
 ## Adding the Code to our app
+
 Now go to the MainActivity.kt file. This file contains code that will control how our app behaves. Add the following code:
+
 ```kotlin
 package com.example.hacksprints2
 
@@ -427,14 +426,14 @@ class MainActivity : AppCompatActivity() {
   super.onCreate(savedInstanceState)
   setContentView(R.layout.activity_main)
 
-    val textView = findViewById<TextView>(R.id.numberText) //Turns our text view into a variable access or change properties of 
+    val textView = findViewById<TextView>(R.id.numberText) //Turns our text view into a variable access or change properties of
 
-    val button = findViewById<Button>(R.id.clickButton) //Turns our button into a variable we can edit 
+    val button = findViewById<Button>(R.id.clickButton) //Turns our button into a variable we can edit
 
     button.text = "Increment"
 
     button.setOnClickListener {
-    //Allows for the sensing of when a button is set 
+    //Allows for the sensing of when a button is set
       number += 1
       textView.text = "Our Value: " + number.toString() //Uses integer function to set the text to our value
     }
@@ -453,37 +452,23 @@ import android.widget.TextView
 These statements here import external libraries for our project. We will explain what these are in further classes.
 
 ```kotlin
-val textView = findViewById<TextView>(R.id.numberText) //Turns our text view into a variable access or change properties of 
+val textView = findViewById<TextView>(R.id.numberText) //Turns our text view into a variable access or change properties of
 
-val button = findViewById<Button>(R.id.clickButton) //Turns our button into a variable we can edit 
+val button = findViewById<Button>(R.id.clickButton) //Turns our button into a variable we can edit
 ```
 
-These statements make our design elements accessible via code. Essentially turning them into objects in code that we can access and manipulate. 
-
+These statements make our design elements accessible via code. Essentially turning them into objects in code that we can access and manipulate.
 
 ```kotlin
 button.text = "Increment"
 
 button.setOnClickListener {
-//Allows for the sensing of when a button is set 
+//Allows for the sensing of when a button is set
    number += 1
    textView.text = "Our Value: " + number.toString() //Uses integer function to set the text to our value
 }
 ```
 
-These statements here allow us to set details on our button class, and also start paying attention to the clicking of a button. 
-
+These statements here allow us to set details on our button class, and also start paying attention to the clicking of a button.
 
 Now at the top of Android Studio, hit the green play button and run your app! When it starts, every time we press our button, the text should show the number of times we have clicked it!
-
-
-
-
-
-
-
-
-
-
-
-
