@@ -6,8 +6,6 @@
 
 ## Resources
 
-\*es\*\*
-
 - [Session 2– Dive Into Android](https://docs.google.com/presentation/d/1pJqlSMJtpLAcprp3cPzGIiNfDhnxWn6_O8LMmpBiNgE/edit?usp=sharing)
 
 **ACM Membership Attendance Portal**
@@ -28,6 +26,9 @@ Please join our Facebook page for announcements and more! We will do our best to
 ## What we'll be learning today
 
 - [Review on Nullable](#nullable-types)
+- [Activities and Views](#activities)
+- [A Brief Tour of Android Studio](#a-tour-of-android-studio)
+- [Making Your First App](#let's-make-an-app)
 
 ## Reviewing Nullable Types
 
@@ -252,7 +253,7 @@ From the example above, we see that lambda functions allow us to **quickly defin
    3.k the downloaded file to start the install
 2. Follow the instructions on your screen, they may vary based on your operating system
    5.k through the installer. The default settings should work. If you're fg edgy, you can choose the dark theme.
-3. After youk finish on the last page, the installer will download a lot of components. This may take some time.
+3. After you finish on the last page, the installer will download a lot of components. This may take some time.
    1. Things you can do while Android Studio is downloading:
       1. Make a sandwich
       2. Take a shower
@@ -349,3 +350,140 @@ Here are some examples of basic views:
 <img src="./images/ViewsExample.png">
 
 We combine these views together, specifying where they should be positioned and how they should look, to ultimately create a layout. With our completed layout, we finally have a fully functional activity with an associated display!
+
+
+## A Tour of Android Studio
+Android Studio has a lot of different tools. Some of these we will be using, but many of them aren’t useful for right now. The main two files you want to look at as a beginner developer will be the MainActivity file, and activity_main.xml. 
+
+![activity_main.xml](images/activity_main.png)
+
+Activity files and xml files are the two puzzle pieces of making a screen. Activity files are the code side of things and xml files represent the design of the screen. Eventually we will cover using multiples of these things in order to do multiple screens, but for now we don’t need to. 
+
+
+The build output pane in the bottom is the same as the output in all other IDEs. It tells you status messages about your app and also any debugging messages. 
+
+![MainActivity.kt](images/main_activity.png)
+
+The folders inside the java folder are used for advanced testing. The other folders inside res will be used for everything from storing long term values, to the app icon, and so on. The Android Manifest file is sort of a management file for important app settings, which we will address later in the course.
+
+## Setting up A Virtual Device
+
+![Tool Bar](images/toolbar.png)
+
+The tools area is where we’re going to create our virtual device. Click tools and AVD manager to create a virtual device to test your app. 
+
+![Pick Virtual Device](images/avd.png)
+
+Pick the Pixel 2 to start, and then we can test our apps out! It will take around 7 GB of space so keep that in mind. 
+
+
+
+## Let’s Make an App!
+We will now be demoing a simple app so we can introduce the different panels and files we will use in app development. In this app, we will be making a button clicking counter! 
+
+This will have a button centered under a line of text. When we start pressing the button, the line of text will begin displaying the number of times we have clicked the button, updating whenever the button is clicked. 
+
+Before we begin, go to **File** and create a New Project. Create an Empty Activity and name the project HackSprintS2 with an API level of 19. 
+
+### Creating Our App Interface
+First we’ll need to create the buttons and text for our app. To do this, we’ll first need to navigate to our the design tab of the visual layout editor. 
+
+![Deisgn Tab](images/designview.png)
+
+Here we will be able to add different Views (Text, Buttons, etc.) to our app. 
+
+In this panel, on the top left, we should see a section called Palette. This contains different things we can add to our app. Currently we should see things like TextView, Button, ImageView, and a few more. 
+
+![Palette](images/palette.png)
+
+First, let’s add a TextView (a fancy name for text) from the area called Palette, drag and drop it from your app. 
+
+
+When we select this TextView in our app or under Component, we should see the Attribute panel pop up on the right. In this section, we can change different properties about our TestView. There should be a field here called **id**. Change the for the textView to `numberText`. 
+
+![TextView ID](images/textid.png)
+
+Around our text, we should see 4 bubbles on each edge. These bubbles help us to position our text. Drag each of the bubbles to the edge to set the _constraints_ for the TextView (Our way of making sure our design elements are where we want them to be). 
+
+![TextView with Constraints](images/textconstraints.png)
+
+Now let’s add a Button. Click the Button on our app or under the Component Tree and go to the attributes panel. Give the Button an **id** of `buttonClick`. 
+
+> Ensure that the tab that says id has a set id you can remember; later this ties the code in MainActivity.kt to the design elements. It connects the elements to your code, and you have to remember it to make this connection 
+
+
+## Adding the Code to our app
+Now go to the MainActivity.kt file. This file contains code that will control how our app behaves. Add the following code:
+```kotlin
+package com.example.hacksprints2
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+  super.onCreate(savedInstanceState)
+  setContentView(R.layout.activity_main)
+
+    val textView = findViewById<TextView>(R.id.numberText) //Turns our text view into a variable access or change properties of 
+
+    val button = findViewById<Button>(R.id.clickButton) //Turns our button into a variable we can edit 
+
+    button.text = "Increment"
+
+    button.setOnClickListener {
+    //Allows for the sensing of when a button is set 
+      number += 1
+      textView.text = "Our Value: " + number.toString() //Uses integer function to set the text to our value
+    }
+  }
+}
+```
+
+Let’s breakdown how this code works. If many of the functions seem unfamiliar, do not worry. We will be going more into detail about these next week. Many will also start making more sense with practice!
+
+```kotlin
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.TextView
+```
+
+These statements here import external libraries for our project. We will explain what these are in further classes.
+
+```kotlin
+val textView = findViewById<TextView>(R.id.numberText) //Turns our text view into a variable access or change properties of 
+
+val button = findViewById<Button>(R.id.clickButton) //Turns our button into a variable we can edit 
+```
+
+These statements make our design elements accessible via code. Essentially turning them into objects in code that we can access and manipulate. 
+
+
+```kotlin
+button.text = "Increment"
+
+button.setOnClickListener {
+//Allows for the sensing of when a button is set 
+   number += 1
+   textView.text = "Our Value: " + number.toString() //Uses integer function to set the text to our value
+}
+```
+
+These statements here allow us to set details on our button class, and also start paying attention to the clicking of a button. 
+
+
+Now at the top of Android Studio, hit the green play button and run your app! When it starts, every time we press our button, the text should show the number of times we have clicked it!
+
+
+
+
+
+
+
+
+
+
+
+
