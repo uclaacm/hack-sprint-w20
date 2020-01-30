@@ -1,9 +1,34 @@
 # Hack Sprint Session 3: Basic Views
 
+**Date**: January 30, 2020
+**Location**: Covel 227
+**Teacher**: Jody Lin and Eugene Lo 
+
+## Resources
+
+- [Session 3 – Dive Into Android](https://docs.google.com/presentation/d/1RDNyNVhOJh0qF4IF2U57GmV26Uxlp_uWX-nK9AIyLnA/edit?usp=sharing)
+
+**ACM Membership Attendance Portal**
+
+- [Portal](http://members.uclaacm.com/login)
+
+**Questions**
+Please join our Facebook page for announcements and more! We will do our best to answer questions on our page every week.
+
+- [Facebook Page](https://www.facebook.com/groups/1399200097134287)
+
+**Other useful resources**
+
+- [Kotlin Documentation](https://kotlinlang.org/docs/reference/)
+- [Interactive Kotlin Tutorial](https://blog.jetbrains.com/blog/2019/12/05/jetbrains-academy-kotlin/)
+- [Google Codelabs](https://codelabs.developers.google.com/codelabs/kotlin-android-training-welcome/index.html#1)
+
 ## What we’ll be learning today
-- Let’s Build an App!
-- Resources
-- Try It Yourself :)
+- [Tic Tac Toe](#tic-tac-toe)
+- [Game Layout](#game-layout)
+- [Resources](#resources)
+- [User Interactivity](#user-interactivity)
+- [Try It Yourself :)](#exercises)
 
 ## Tic Tac Toe
 Today we will be building a simple Tic Tac Toe game! Through this we’ll be covering many of the important components of an android App! 
@@ -16,7 +41,7 @@ First go to *File* and create a new project called *Tic Tac Toe* using API Level
 
 For the first half of this workshop, we’ll create the visual layout of the entire project in the `activity_main.xml` file. In the second half, we’ll add code to `MainActivity.kt` to implement our buttons and game code. 
 
-## Creating our Layout
+## Game Layout
 
 Click on the `activity_main.xml` file to open our design layout. Then at the bottom left, where there are 2 tabs saying *Design* and *Text*, click *Design*. We will be building our app primarily with the *Design* view. 
 
@@ -469,7 +494,7 @@ The code you need to change the background color of the button looks like this:
 button.setBackgroundResource(R.color.colorPrimary)
 ```
 
-`button` is an id. `R.color.colorPrimary` refers to the `colorPrimary` color we defined in `colors.xml. For any button with `symbol1`, change the background color to `colorPrimary` (like the example above.) For any button with `symbol2` change the background color to `colorPrimaryDark`. 
+`button` is an id. `R.color.colorPrimary` refers to the `colorPrimary` color we defined in `colors.xml`. For any button with `symbol1`, change the background color to `colorPrimary` (like the example above.) For any button with `symbol2` change the background color to `colorPrimaryDark`. 
 
 To reset buttons back to their default state, call this function:
 ```kotlin
@@ -608,7 +633,7 @@ class MainActivity : AppCompatActivity() {
 
 
 activity_main.xml
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
