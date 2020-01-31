@@ -579,7 +579,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun switchSymbol() {
-        currentSymbol = if (currentSymbol == symbol1){symbol2} else {symbol1}
+        if (currentSymbol == symbol1){
+            currentSymbol = symbol2
+        }
+        else {
+            currentSymbol = symbol1
+        }
         playerTurn.text = "${currentSymbol}'s Turn"
     }
 
