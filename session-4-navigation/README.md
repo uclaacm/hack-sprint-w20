@@ -73,8 +73,8 @@ You can copy the layout XML directly into the
 fragments XML layout files. You can copy from the 
 files here:
 - [fragment_start.xml](code_src/fragment_start.xml)
-- [fragment_game.xml](code_src/fragment_score.xml)
-- [fragment_score.xml](code_src/fragment_game.xml)
+- [fragment_game.xml](code_src/fragment_game.xml)
+- [fragment_score.xml](code_src/fragment_score.xml)
 
 > If you want a challenge, try to replicate the design 
 > just by looking at the picture below.
