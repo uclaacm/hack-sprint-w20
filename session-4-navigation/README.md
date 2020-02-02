@@ -79,6 +79,14 @@ files here:
 > If you want a challenge, try to replicate the design 
 > just by looking at the picture below.
 
+After you copied the XML, you might find references
+to `@string` resources in the layout XML files. 
+We have to create the string resrouce yourself. 
+You can refer to the 
+[last week's README](https://github.com/uclaacm/hack-sprint-w20/tree/master/session-3-basic-views#resources)
+to see how to create `@string` resources. 
+
+
 If you have copied the layout correctly, you
 should see the layout as follow:
 
