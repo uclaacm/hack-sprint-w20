@@ -81,7 +81,7 @@ files here:
 
 After you copied the XML, you might find references
 to `@string` resources in the layout XML files. 
-We have to create the string resrouce yourself. 
+We have to create the string resource yourself. 
 You can refer to the 
 [last week's README](https://github.com/uclaacm/hack-sprint-w20/tree/master/session-3-basic-views#resources)
 to see how to create `@string` resources. 
