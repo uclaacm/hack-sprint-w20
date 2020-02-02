@@ -18,16 +18,16 @@ class GameFragment : Fragment() {
     var questionIndex = 0
     var numYes = 0
     val questions = listOf<String>(
-        "Thrown up on RA?",
-        "Had dorm or apartment party/kickback shut down?",
-        "Masturbated while someone else is in the room without them knowing?",
-        "Been walked in on by a roommate while masturbating?",
-        "Walked in on a roommate masturbating?",
-        "Been walked in on by roommate while having sex?",
-        "Walked in on roommate having sex?",
-        "Engaged in any sexual act with roommate(s)?",
-        "Been to a Roebling block party",
-        "Been sexiled at least twice in one day?"
+        "Been approached by Andre on Bruinwalk?", 
+        "Been taken by Andre to the ATM?", 
+        "Walked through Ackerman to avoid Bruinwalk flyers?", 
+        "Had Rende West two or more times in one day?", 
+        "Eaten only at B-Plate for at least three consecutive days?", 
+        "Gone to Diddy Reise more than once in a week?", 
+        "Cried in the stairwell?", 
+        "Chosen UCLA over UC Berkeley?", 
+        "Chosen UCLA over USC?", 
+        "Been rejected from a club?"
     )
 
     lateinit var questionNumText: TextView
