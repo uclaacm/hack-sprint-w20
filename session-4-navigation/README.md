@@ -31,7 +31,7 @@ We know that Android Studio will help us combine all our source code and app res
 
 This is done through what is known as a *build system* or build tools. 
 
-> Build Systems: What a build system does is, it automates the construction of our code and merges it into a useable and executable form. This is very useful for large-scale where it is quite hard to keep track of what needs to be built and in what sequence to perform certain actions. 
+> Build Systems: What a build system does is, it automates the construction of our code and merges it into a useable and executable form. This is very useful for large-scale projects where it is quite hard to keep track of what needs to be built and in what sequence to perform certain actions. 
 
 In terms of what we’re doing, Android Studio uses [Gradle](https://gradle.org/), an advanced build toolkit that automates and manages the build process, turning all our source code into what’s known as an **APK**. 
 
