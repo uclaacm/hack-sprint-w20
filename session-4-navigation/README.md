@@ -7,7 +7,7 @@
 
 ## Resources
 
-- [Session 4 – Dive Into Android (TODO)]()
+- [Session 4 – Dive Into Android](https://tinyurl.com/hacksprintw5)
 
 **ACM Membership Attendance Portal**
 
