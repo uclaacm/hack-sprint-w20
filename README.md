@@ -13,8 +13,8 @@ We hope you have a lot of fun this quarter, and please reach out to any of us if
 
 * [Session 1: Intro to Kotlin](https://github.com/uclaacm/hack-sprint-w20/tree/master/session-1-basics-of-kotlin)
 * [Session 2: Android Studio](https://github.com/uclaacm/hack-sprint-w20/tree/master/session-2-dive-into-android)
-* Session 3: Basic Views
-* Session 4: Navigation
+* [Session 3: Basic Views](https://github.com/uclaacm/hack-sprint-w20/tree/master/session-3-basic-views)
+* [Session 4: Navigation](https://github.com/uclaacm/hack-sprint-w20/tree/master/session-4-navigation)
 * Session 5: Dependencies
 * Session 6: Api Calls
 * Session 7-9: Group Project
