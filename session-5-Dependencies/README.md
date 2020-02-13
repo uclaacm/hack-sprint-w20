@@ -97,7 +97,7 @@ In your AndroidManifest.xml file, add the android:name attribute to tell the app
 
 Replace **APPLICATION** with the name of your activity file
 
-**override fun onCreate(savedInstanceState: Bundle?) {
+override fun onCreate(savedInstanceState: Bundle?) {
 
        super.onCreate(savedInstanceState)
 
