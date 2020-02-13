@@ -1,3 +1,34 @@
+# Hack Sprint Session 5: Dependencies
+
+**Date**: February 13, 2020
+**Location**: Covel 227
+**Teacher**: Sahen Rai
+
+## Resources
+
+- [Session 5 – Dependencies](https://docs.google.com/presentation/d/1OR7_yaUceu7wARLXqKOM3io5goMD2phU8eO8X9I8Hxk/edit?usp=sharing)
+
+**ACM Membership Attendance Portal**
+
+- [Portal](http://members.uclaacm.com/login)
+
+**Questions**
+Please join our Facebook page for announcements and more! We will do our best to answer questions on our page every week.
+
+- [Facebook Page](https://www.facebook.com/groups/1399200097134287)
+
+**Other useful resources**
+
+- [Kotlin Documentation](https://kotlinlang.org/docs/reference/)
+- [Interactive Kotlin Tutorial](https://blog.jetbrains.com/blog/2019/12/05/jetbrains-academy-kotlin/)
+- [Google Codelabs](https://codelabs.developers.google.com/codelabs/kotlin-android-training-welcome/index.html#1)
+
+## What we’ll be learning today
+- [Dependencies :)](#dependencies)
+- [Explore Now](#explore-now)
+
+## Dependencies
+
 Dependencies are basically using other people’s code in order to make our lives easier, make cooler projects faster, and essentially act like building blocks to making a  better app. They can do anything from access Twitter user data, to making fragment management easier. Some are used in every project people every make, and some are more for fun one off projects. 
 
 Today, we will be using the following libraries as our dependencies:
