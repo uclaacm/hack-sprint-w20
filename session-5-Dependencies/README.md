@@ -1,3 +1,34 @@
+# Hack Sprint Session 5: Dependencies
+
+**Date**: February 13, 2020
+**Location**: Covel 227
+**Teacher**: Sahen Rai
+
+## Resources
+
+- [Session 5 – Dependencies](https://docs.google.com/presentation/d/1OR7_yaUceu7wARLXqKOM3io5goMD2phU8eO8X9I8Hxk/edit?usp=sharing)
+
+**ACM Membership Attendance Portal**
+
+- [Portal](http://members.uclaacm.com/login)
+
+**Questions**
+Please join our Facebook page for announcements and more! We will do our best to answer questions on our page every week.
+
+- [Facebook Page](https://www.facebook.com/groups/1399200097134287)
+
+**Other useful resources**
+
+- [Kotlin Documentation](https://kotlinlang.org/docs/reference/)
+- [Interactive Kotlin Tutorial](https://blog.jetbrains.com/blog/2019/12/05/jetbrains-academy-kotlin/)
+- [Google Codelabs](https://codelabs.developers.google.com/codelabs/kotlin-android-training-welcome/index.html#1)
+
+## What we’ll be learning today
+- [Dependencies :)](#dependencies)
+- [Explore Now](#explore-now)
+
+## Dependencies
+
 Dependencies are basically using other people’s code in order to make our lives easier, make cooler projects faster, and essentially act like building blocks to making a  better app. They can do anything from access Twitter user data, to making fragment management easier. Some are used in every project people every make, and some are more for fun one off projects. 
 
 Timber: used for advanced logging
@@ -13,8 +44,6 @@ How to add a new dependency and sync with Gradle:
 3. implementation 'com.jakewharton.threetenabp:threetenabp:1.2.2'
 
     It should look something like this:
-
-
 
 ![alt_text](https://www.dropbox.com/s/tp00t755t26bho8/image2.png?raw=1 "image_tooltip")
 
@@ -130,7 +159,7 @@ While .d will put it in the debug section
 
 Logcat is a powerful tool built into Android Studio that allows you to connect to either your device or emulator and see the result of any logs in your app. This can be anything from debug messages, to errors, to just simple print statements. 
 
-Explore now!:
+## Explore Now!
 
 [FancyToast-Android: Make your native android Toasts Fancy. A library that takes the standard Android toast to the next level with a variety of styling options. Style your toast from code.](https://github.com/Shashank02051997/FancyToast-Android)
 
