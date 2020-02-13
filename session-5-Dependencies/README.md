@@ -25,7 +25,8 @@ Please join our Facebook page for announcements and more! We will do our best to
 
 ## What we’ll be learning today
 - [Dependencies :)](#dependencies)
-- [Explore Now](#explore-now)
+- [ThreeTen](#trying-out-threeten)
+- [Timber](#trying-out-timber)
 
 ## Dependencies
 
@@ -50,7 +51,7 @@ How to add a new dependency and sync with Gradle:
    ![](images/dep-threeten.png)
 
 
-3. After this Android Studio would start saying “gradle files have changed since last project sync”, press the “sync now” link to start a sync. We do this to ensure that our project downloads the dependency. During each sync, Gradle will look at this file and decide if it needs to download the code for the libraries and change the build process
+3. After this Android Studio will start saying “gradle files have changed since last project sync”, press the “sync now” link to start a sync. We do this to ensure that our project downloads the dependency. During each sync, Gradle will look at this file and decide if it needs to download the code for the libraries and change the build process
 to support the newly added libraries. 
 
 4. Inside our MainActivity, we then initialize the library
@@ -92,16 +93,15 @@ val localDateTime = LocalDateTime.parse(localDateTimeString)
 > Note: Again, do not forget to import the library function `LocalDateTime`.
 
 Now you see that we can use other's people code to do the 
-datetime logic. We do not have to sit there and figure out 
+date-time logic. We do not have to sit there and figure out 
 the logic for parsing a string that contains a date and time!
 
 A fun little note: the format of string that you see here
-(`"2011-12-03T10:15:30"`) actually have a standard. It is
+(`"2011-12-03T10:15:30"`) actually has a standard. It is
 called the ISO 8601 format and you can read more about
 it [here](https://www.w3.org/TR/NOTE-datetime).
-Having standards are important for computers since 
-computers can only deal with formatted data that follows
-pattern!
+Having standards is important for computers since 
+computers can only deal with formatted data that follows a pattern!
 
 > Exercise: the `localDateTime` variable is now an object
 > containing data about parsed date. Try accessing 
@@ -125,9 +125,9 @@ To initialize Timber, we have to use a special class called the Application clas
 This class essentially acts as the “manager” activity of our app. Remember
 when we say our app starts at `MainActivity`? That was a lie (sorry uwu).
 
-Our application actually starts at the Application class then it goes
+Our application actually starts at the Application class and then it goes
 to `MainActivity`. However, where do we find this Application class?
-If you look through all the folder, it is not there at all! 
+If you look through all the folders, it is not there at all! 
 If there is no Application class, that means Android had been using a 
 default one for us that does nothing. 
 
@@ -176,7 +176,7 @@ class LoggingApplication: Application() {
 
 The author of the Timber library gave a creative name for the 
 initialization function calling it `plant`. It takes in 
-one parameter which is a tree. We do not care what it is
+one parameter which is a tree. We do not care what it is,
 but we can get a tree by calling `Timber.DebugTree()`.
 
 ## `AndroidManifest.xml`
@@ -196,15 +196,13 @@ folder and open `AndroidManifest.xml`.
 In your AndroidManifest.xml file, add the `android:name` attribute to 
 the `application` tag to
 tell the app you want that to be your application activity.
-I named by Application class `LoggingApplication`, so the
-value of `android:name` will be `.LoggingApplication`
+I named my Application class `LoggingApplication`, so the value of `android:name` will be `.LoggingApplication`
 
 ```xml
 android:name=".LoggingApplication"
 ```
 
-You should replace the application name with your application
-name.
+You should replace the application name with your application name.
 
 Also notice how there is a tag called `activity` with
 the attribute being our `MainActivity`. Yes, that is 
@@ -220,7 +218,7 @@ you can change it here!
 
 Why did we initialize `Timber` inside our Application
 class instead of `MainActivity`? Although we have not
-done that, app can contain multiple activities, 
+done that, an app can contain multiple activities, 
 and activities can use the same libraries. Therefore,
 instead of initializing our library in each of the 
 activities. We simply do it all at once in the 
@@ -252,8 +250,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ```
 
-Now if you click on __Logcat__ at the bottom of your Android
-Studio. You can see the logs!
+Now if you click on __Logcat__ at the bottom of your Android Studio. You can see the logs!
 
 <img src="images/logcat-toolbar.png" width=500px>
 
@@ -312,7 +309,7 @@ the different levels are:
 - Error
 - Assert
 
-To indicate a log's level, we call different 
+To indicate a log's level, we call a different 
 function inside the Timber library. For example, 
 we call `Timber.e` to indicate the **e**rror log
 level, or `Timber.d` to indicate the **d**ebug 
