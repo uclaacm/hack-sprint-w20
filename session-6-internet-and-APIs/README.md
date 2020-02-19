@@ -314,9 +314,7 @@ What does this do? All this does, is adds a variable called `INSTANCE` and a fun
 Now, we need our one `NetworkSingleton` object to have our `RequestQueue`. Add the following code inside the `NetworkSingleton` class, but **outside of the companion object**.
 
 ```kotlin
-val requestQueue: RequestQueue by lazy {
-    Volley.newRequestQueue(context.applicationContext)
-}
+val requestQueue = Volley.newRequestQueue(context.applicationContext)
 ```
 
 The last step for this class is adding a function that can add a request for some type of object (represented by the template variable `T`) to the `requestQueue`.
@@ -348,9 +346,8 @@ class NetworkSingleton(context: Context) {
             }
     }
 
-    val requestQueue: RequestQueue by lazy {
-        Volley.newRequestQueue(context.applicationContext)
-    }
+    val requestQueue = Volley.newRequestQueue(context.applicationContext)
+
     fun <T> addToRequestQueue(req: Request<T>) {
         requestQueue.add(req)
     }
