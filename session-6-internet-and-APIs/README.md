@@ -297,19 +297,16 @@ class NetworkSingleton(context: Context) {
 Let's create our one `RequestQueue` inside of our class:
 ```kotlin
 companion object {
-    @Volatile
     private var INSTANCE: NetworkSingleton? = null
-    fun getInstance(context: Context) =
-        INSTANCE ?: synchronized(this) {
-            INSTANCE ?: NetworkSingleton(context).also {
-                INSTANCE = it
-            }
+    fun getInstance(context: Context): NetworkSingleton {
+        if(INSTANCE == null) {
+            INSTANCE = NetworkSingleton(context)
         }
+        return INSTANCE!!
+    }
 }
 ```
 What does this do? All this does, is adds a variable called `INSTANCE` and a function called `getInstance` that belongs to the class as a whole. This makes it so we can share one `NetworkSingleton` throughout our code more easily. All `getInstance` does is gets that `NetworkSingleton` or creates one if there isn't one. 
-
-> Don't worry about understanding `@Volatile` for now. It's some gross Java garbage.
 
 Now, we need our one `NetworkSingleton` object to have our `RequestQueue`. Add the following code inside the `NetworkSingleton` class, but **outside of the companion object**.
 
@@ -336,14 +333,13 @@ import com.android.volley.toolbox.Volley
 
 class NetworkSingleton(context: Context) {
     companion object {
-        @Volatile
         private var INSTANCE: NetworkSingleton? = null
-        fun getInstance(context: Context) =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: NetworkSingleton(context).also {
-                    INSTANCE = it
-                }
+        fun getInstance(context: Context): NetworkSingleton {
+            if(INSTANCE == null) {
+                INSTANCE = NetworkSingleton(context)
             }
+            return INSTANCE!!
+        }
     }
 
     val requestQueue = Volley.newRequestQueue(context.applicationContext)
@@ -353,6 +349,10 @@ class NetworkSingleton(context: Context) {
     }
 }
 ```
+
+> A note about **lazy initialization**: normally, for an object like `requestQueue`, we want to put off initializing it until we need it. This is useful because initializing some objects can be cumbersome. You can find the Kotlin documentation for lazy [here](https://kotlinlang.org/docs/reference/delegated-properties.html#lazy).
+
+> A note about **thread safety**: If you view the [documentation for this portion](https://developer.android.com/training/volley/requestqueue#singleton) you might notice the use of the `@volatile` annotation. `@volitile` makes writes to the property it annotates immediately available to other threads. If you don't understand what that means, that's okay. Multi-threading is a complex topic that we won't cover here.
 
 Now all that's left is to make our API call! Go back to **NumberFragment.kt** and add the following function and variable declaration (make sure to replace `[YOUR_API_KEY]` with the API key you got when you created your account):
 
