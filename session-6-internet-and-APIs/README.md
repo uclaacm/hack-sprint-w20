@@ -41,7 +41,7 @@ Today, we'll be making a simple app that retrieves facts about our favorite numb
 
 The next page will show the number you searched as well as a fact from the API
 
-<img src='assets/number_page.png' height=500>
+<img src='assets/NumberFragment.png' height=500>
 
 ## What is an API
 > A set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service – Oxford English Dictionary
@@ -51,10 +51,15 @@ API stands for "Application Program Interface." When you want to get data from a
 For example, if we had a system that took two numbers and returned to you the sum of those numbers, the API would specify that you should send the system two numbers and that it will give you back one number.
 
 ## Setup: A Review of Navigation
+### Create a Fragment
 Create a new project with an empty activity. Once you do this, you'll want to create a new blank fragment by right clicking on the **res folder** > **new** > **fragment** > **fragment (blank)**.
 
 Call the first one **SearchFragment** and the second one **NumberFragment**. Make sure to **uncheck** "Include fragment factory callbacks" and "Include interface callbacks"
-Once you create them, copy the following code in for each of our fragments.
+
+### Fragment Layout
+Once you create them, copy the following xml in for each of our fragments to create the designs for our fragments.
+
+**NOTE ⚠️: The fragment names are used in many other parts of the app (for example: `SearchFragmentDirections` will be automatically generated). Please copy these names exactly**
 
 **SearchFragment.xml**
 ```xml
@@ -157,13 +162,14 @@ Once you create them, copy the following code in for each of our fragments.
 
 Take a moment to look at the design and text panes for each of these files. Can you see how the xml connects to the design?
 
+### Navigation Dependencies
 Now that we've created the pieces of our app design, we need to connect them! This requires **navigation**. So we have some code to import. Add the following lines in the dependencies section of **build.gradle (module: app)**
 ```gradle
 implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
 implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
 ```
 
-We'll also take this time to install SafeArgs, so we can pass our number to our `NumberFragment`.  In the dependencies section of the **project level build.gradle file**. Add the following line in the dependencies section.
+We'll also take this time to install **SafeArgs**, so we can pass our number to our `NumberFragment`.  In the dependencies section of the **project level build.gradle file**. Add the following line in the dependencies section.
 
 ```gradle
 classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0"
@@ -177,13 +183,15 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 Android should prompt you to sync now. Do so. If it doesn't, click the little elephant with a diagonal-down arrow, or search "sync project" under the help menu at the top of the screen.
 
+### Navigation Flow
 Next, we need to define the flow of our app. It is very simple:
 ```
 SearchFragment --> NumberFragment
 ```
 Right click on the **res folder** and go to **New > Android Resource File**. On the next screen give it a file name of **nav.xml** and a resource type of **Navigation**. Then click ok. Go to our nav.xml file and add our two fragments making sure that **SearchFragment** has the house icon next it. If it doesn't, right click it and select "Set as Start Destination." 
 
-Finally, go to main.xml and replace the TextView there with the following. Make sure to replace `[NAV]` with what you named your navigation file (mine is nav.xml, so I would put nav)
+### Link Your Navigation to Your Main Layout
+Finally, go to activity_main.xml and replace the TextView there with the following. Make sure to replace `[NAV]` with what you named your navigation file (mine is nav.xml, so I would put nav)
 ```xml
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -195,10 +203,13 @@ Finally, go to main.xml and replace the TextView there with the following. Make 
         app:navGraph="@navigation/[NAV]" />
 ```
 
+### Check Point 🚩
 At this point, your app should run, so try running it. You'll notice, however, that the search button doesn't bring you to the next screen. Let's do that next.
 
+### Navigating to NumberFragment
 First, we want to have our `NumberFragment` accept a number to display a fact for. To do this, let's go to our nav.xml file. Click on the `numberFragment` on the screen and, in the attributes pane on the right, click the + sign next to "Arguments".  In the "Add Argument Link" pop up window, set the name to **number** and the type to **Integer**. It does not need a default value.
 
+### Setting Up SearchFragment
 We want the search button to have an on click listener that navigates to `NumberFragment`. First, add two variables for our views at the top of our class:
 ```kotlin
 class NumberFragment : Fragment() {
@@ -221,8 +232,10 @@ searchButton.setOnClickListener {
 }
 return view
 ```
+### Checkpoint 🚩
 Make any necessary imports (there are a few). If we run our app now, we should see that we navigate to the next screen, but none of the values are set, and we get no information from the internet.
 
+### Setting Up NumberFragment
 We should have the `NumberFragment` **use** the number we passed it. To do that, we can replace the body of the `onCreate` function in `NumberFragment` with the following:
 ```kotlin
 // Inflate view
@@ -244,9 +257,6 @@ class NumberFragment : Fragment() {
     lateinit var tvNumber: TextView
     lateinit var tvFacts: TextView
 ```
-
-
-<!--* Back Stack -->
 
 ## A Look at the Numbers API
 Go see the [Numbers API](https://rapidapi.com/divad12/api/numbers-1). You will need to create an account to get an API key. An API key is just a special identifier that allows you to use an API.
@@ -270,7 +280,7 @@ This information will help us as we write our API calls. There are a few that we
 
 Click on "Get math fact" then press "Test Endpoint". You should see the response near the bottom right of the screen.
 
-<!-- PUT IMAGE WHEN AVAILABLE -->
+<img src='assets/response_body.png' width=500>
 
 
 ## Volley: Getting Data From the Internet
@@ -284,6 +294,7 @@ We can split our use of Volley into two steps
 1. Creating a class to manage our API calls
 2. Using that class
 
+### Creating A Request Queue
 Volley manages our API calls with a `RequestQueue`.  However, `RequestQueue` is not a cheap object to create, so we really only want one. We want to create a class that will **hold only one `RequestQueue`**.  In Kotlin, this can be done with **Companion Objects**. Companion objects are like mini-objects that are associated with a class itself (rather than objects of that class). For example, a Car class might have a Factory companion object, because you only need one Factory for the Cars.
 
 Create a new class called `NetworkSingleton` by right clicking the **com.example.[app name]** folder under the java folder and selecting **New > Kotlin File/Class** giving it a name of **NetworkSingleton** and a type of **class**.
@@ -306,7 +317,7 @@ companion object {
     }
 }
 ```
-What does this do? All this does, is adds a variable called `INSTANCE` and a function called `getInstance` that belongs to the class as a whole. This makes it so we can share one `NetworkSingleton` throughout our code more easily. All `getInstance` does is gets that `NetworkSingleton` or creates one if there isn't one. 
+What does this do? All this does, is adds a variable called `INSTANCE` and a function called `getInstance` that belongs to the class as a whole. This makes it so we can share one `NetworkSingleton` throughout our code more easily. All `getInstance` does is gets that `NetworkSingleton` or creates one if there isn't one. You may notice that both `NetworkSingleton` and `getInstance` take a `Context`. A context is simply a link to the global state of your app.
 
 Now, we need our one `NetworkSingleton` object to have our `RequestQueue`. Add the following code inside the `NetworkSingleton` class, but **outside of the companion object**.
 
@@ -354,6 +365,7 @@ class NetworkSingleton(context: Context) {
 
 > A note about **thread safety**: If you view the [documentation for this portion](https://developer.android.com/training/volley/requestqueue#singleton) you might notice the use of the `@volatile` annotation. `@volitile` makes writes to the property it annotates immediately available to other threads. If you don't understand what that means, that's okay. Multi-threading is a complex topic that we won't cover here.
 
+### Making an API Call
 Now all that's left is to make our API call! Go back to **NumberFragment.kt** and add the following function and variable declaration (make sure to replace `[YOUR_API_KEY]` with the API key you got when you created your account):
 
 ```kotlin
@@ -516,6 +528,7 @@ class NumberFragment : Fragment() {
 }
 ```
 
+### Can I Please Use the Internet?
 We are almost done. If you run the app now, it should work okay, but then it give you "Permission denied" within some error from Volley. This is because you have to ask to use the internet. You do this by adding the following line into **AndroidManifest.xml** under the `<manifest>` tag:
 ```kotlin
 <uses-permission android:name="android.permission.INTERNET"/>
