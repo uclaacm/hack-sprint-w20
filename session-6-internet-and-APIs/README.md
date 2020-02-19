@@ -256,7 +256,19 @@ Once you create an account, you should see some of the following.
 <img src='assets/API1.png' width=500>
 <img src='assets/API2.png' width=500>
 
-This information will help us as we write our API calls. Click on "Get math fact" then press "Test Endpoint". You should see the response near the bottom right of the screen.
+This information will help us as we write our API calls. There are a few that we care about in particular:
+**Header Parameters**
+1. `X-RapidAPI-Key`: This is an identifier that gives you access to the API. You should normally **treat an API key like you would a password**. It is similar to a password for the API.
+2. `X-RapidAPI-Key`: This identifies the domain serving the API.
+
+**Query Parameters**
+1. `number`: This is the number that you want a fact for. You'll see this in the URL for our request.
+2. `json`: This specifies whether we want our response in JSON format. We want this to be true. You'll see this in the URL for our request.
+   
+**Endpoints**
+1. GET math fact: the endpoint we'll use. This API can do multiple things! Different endpoints can provide different services.
+
+Click on "Get math fact" then press "Test Endpoint". You should see the response near the bottom right of the screen.
 
 <!-- PUT IMAGE WHEN AVAILABLE -->
 
@@ -379,8 +391,11 @@ The `jsonObjectRequest` will take four parameters:
 * Type of HTTP request: `Method.GET`
 * url: `url`
 * json object to send to server: `null`
+  * We won't use this, but if you need to send information to an endpoint in your request, you can put it here as a JSON object.
 * a callback if the API call succeeds: `[see below]`
 * a callback if there is an error: `[see below]`
+
+You see that we are passing in two **callbacks**. These are just like the ones we use with `setOnClickListener`! The first is called when we get our data back successfully. The second one is called if there is some error.
 
 Add the following to the `searchNumber` function:
 
