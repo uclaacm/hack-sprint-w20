@@ -6,7 +6,7 @@
 
 ## Resources
 
-- [Session 6 – Internet and APIs]()
+- [Session 6 – Internet and APIs](https://docs.google.com/presentation/d/1N1-SwSpVWqs_px-D-mEQWXYr_V7wMddFxNj5Ddmin2s/edit?usp=sharing)
 
 **ACM Membership Attendance Portal**
 
