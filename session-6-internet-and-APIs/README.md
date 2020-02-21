@@ -92,9 +92,9 @@ Once you create them, copy the following xml in for each of our fragments to cre
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/searchButton"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/searchButton" />
+        app:layout_constraintTop_toTopOf="@+id/btnSearch" />
 
     <TextView
         android:id="@+id/numberPromptText"
@@ -107,7 +107,7 @@ Once you create them, copy the following xml in for each of our fragments to cre
         app:layout_constraintStart_toStartOf="@+id/numberEditText" />
 
     <Button
-        android:id="@+id/searchButton"
+        android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -214,16 +214,16 @@ We want the search button to have an on click listener that navigates to `Number
 ```kotlin
 class NumberFragment : Fragment() {
     // Variables for Views
-    private lateinit var numTextView: TextView
-    private lateinit var searchButton: Button
+    private lateinit var tvNumber: TextView
+    private lateinit var btnSearch: Button
 ```
 Next, let's add the following code to the `onCreate` function in `SearchFragment`:
 ```kotlin
 val view = inflater.inflate(R.layout.fragment_search, container, false)
-numTextView = view.findViewById(R.id.numberEditText)
-searchButton = view.findViewById(R.id.searchButton)
-searchButton.setOnClickListener {
-    val number = numTextView.text.toString().toInt()
+tvNumber = view.findViewById(R.id.numberEditText)
+btnSearch = view.findViewById(R.id.btnSearch)
+btnSearch.setOnClickListener {
+    val number = tvNumber.text.toString().toInt()
     findNavController().navigate(
         SearchFragmentDirections.actionSearchFragmentToNumberFragment(
             number
@@ -366,7 +366,7 @@ class NetworkSingleton(context: Context) {
 > A note about **thread safety**: If you view the [documentation for this portion](https://developer.android.com/training/volley/requestqueue#singleton) you might notice the use of the `@volatile` annotation. `@volitile` makes writes to the property it annotates immediately available to other threads. If you don't understand what that means, that's okay. Multi-threading is a complex topic that we won't cover here.
 
 ### Making an API Call
-Now all that's left is to make our API call! Go back to **NumberFragment.kt** and add the following function and variable declaration (make sure to replace `[YOUR_API_KEY]` with the API key you got when you created your account):
+Now all that's left is to make our API call! Go back to **NumberFragment.kt** and add the following function and variable declaration:
 
 ```kotlin
 val baseUrl = "https://numbersapi.p.rapidapi.com"
@@ -423,7 +423,7 @@ Take this time to appreciate the lack of shenanigans. Are you appreciating it? G
 
 Shenanigans.
 
-We have to override the `getHeaders` function in our `jsonObjectRequest`. Replace the code from the block above with the one block below:
+We have to override the `getHeaders` function in our `jsonObjectRequest`. Replace the code from the block above with the one block below (make sure to replace `[YOUR_API_KEY]` with the API key you got when you created your account):
 
 ```kotlin
 val jsonObjectRequest = object : JsonObjectRequest(
