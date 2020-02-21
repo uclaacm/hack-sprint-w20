@@ -131,7 +131,6 @@ Once you create them, copy the following xml in for each of our fragments to cre
     android:layout_height="match_parent"
     tools:context=".NumberFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/tvNumber"
         android:layout_width="wrap_content"
