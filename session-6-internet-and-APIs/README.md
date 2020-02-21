@@ -265,15 +265,18 @@ Once you create an account, you should see some of the following.
 <img src='assets/API1.png' width=500>
 <img src='assets/API3.png' width=500>
 
-This information will help us as we write our API calls. There are a few that we care about in particular:
+This information will help us as we write our API calls. There are a few that we care about in particular: 
+
 **Header Parameters**
 1. `X-RapidAPI-Key`: This is an identifier that gives you access to the API. You should normally **treat an API key like you would a password**. It is similar to a password for the API.
 2. `X-RapidAPI-Key`: This identifies the domain serving the API.
 
 **Query Parameters**
-1. `number`: This is the number that you want a fact for. You'll see this in the URL for our request.
-2. `json`: This specifies whether we want our response in JSON format. We want this to be true. You'll see this in the URL for our request.
-   
+1. `json`: This specifies whether we want our response in JSON format. We want this to be true. You'll see this in the URL for our request.
+
+**Path Variable**
+1. `number`: This is the number that you want a fact for. You'll see this in the URL for our request before the question mark.
+
 **Endpoints**
 1. GET math fact: the endpoint we'll use. This API can do multiple things! Different endpoints can provide different services.
 
