@@ -73,7 +73,7 @@ Once you create them, copy the following xml in for each of our fragments to cre
     tools:context=".SearchFragment">
 
     <TextView
-        android:id="@+id/titleText"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -84,7 +84,7 @@ Once you create them, copy the following xml in for each of our fragments to cre
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/numberEditText"
+        android:id="@+id/etNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -97,14 +97,14 @@ Once you create them, copy the following xml in for each of our fragments to cre
         app:layout_constraintTop_toTopOf="@+id/btnSearch" />
 
     <TextView
-        android:id="@+id/numberPromptText"
+        android:id="@+id/tvNumberPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Enter a Number:"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/numberEditText"
-        app:layout_constraintStart_toStartOf="@+id/numberEditText" />
+        app:layout_constraintBottom_toTopOf="@+id/etNumber"
+        app:layout_constraintStart_toStartOf="@+id/etNumber" />
 
     <Button
         android:id="@+id/btnSearch"
@@ -220,7 +220,7 @@ class NumberFragment : Fragment() {
 Next, let's add the following code to the `onCreate` function in `SearchFragment`:
 ```kotlin
 val view = inflater.inflate(R.layout.fragment_search, container, false)
-tvNumber = view.findViewById(R.id.numberEditText)
+tvNumber = view.findViewById(R.id.etNumber)
 btnSearch = view.findViewById(R.id.btnSearch)
 btnSearch.setOnClickListener {
     val number = tvNumber.text.toString().toInt()
