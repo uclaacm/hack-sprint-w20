@@ -61,7 +61,7 @@ Once you create them, copy the following xml in for each of our fragments to cre
 
 **NOTE ⚠️: The fragment names are used in many other parts of the app (for example: `SearchFragmentDirections` will be automatically generated). Please copy these names exactly**
 
-**SearchFragment.xml**
+**fragment_search.xml**
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -119,7 +119,7 @@ Once you create them, copy the following xml in for each of our fragments to cre
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-**NumberFragment.xml**
+**fragment_number.xml**
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
