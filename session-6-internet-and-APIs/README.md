@@ -263,7 +263,7 @@ Go see the [Numbers API](https://rapidapi.com/divad12/api/numbers-1). You will n
 Once you create an account, you should see some of the following.
 
 <img src='assets/API1.png' width=500>
-<img src='assets/API2.png' width=500>
+<img src='assets/API3.png' width=500>
 
 This information will help us as we write our API calls. There are a few that we care about in particular:
 **Header Parameters**
