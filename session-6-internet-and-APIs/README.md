@@ -213,16 +213,16 @@ We want the search button to have an on click listener that navigates to `Number
 ```kotlin
 class NumberFragment : Fragment() {
     // Variables for Views
-    private lateinit var tvNumber: TextView
+    private lateinit var etNumber: EditText
     private lateinit var btnSearch: Button
 ```
 Next, let's add the following code to the `onCreate` function in `SearchFragment`:
 ```kotlin
 val view = inflater.inflate(R.layout.fragment_search, container, false)
-tvNumber = view.findViewById(R.id.etNumber)
+etNumber = view.findViewById(R.id.etNumber)
 btnSearch = view.findViewById(R.id.btnSearch)
 btnSearch.setOnClickListener {
-    val number = tvNumber.text.toString().toInt()
+    val number = etNumber.text.toString().toInt()
     findNavController().navigate(
         SearchFragmentDirections.actionSearchFragmentToNumberFragment(
             number
